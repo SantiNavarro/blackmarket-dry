@@ -17,6 +17,7 @@
     border: none;
     background-color: $black;
     color: $white;
+    cursor: pointer;
     &__disabled {
         background-color: $dark-grey-1;
         color: $dark-grey-2;

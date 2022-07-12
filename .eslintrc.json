@@ -32,13 +32,15 @@
     }
   ],
   "rules": {
+    "arrow-body-style": ["warn", "always"],
+    "no-unused-vars": "warn",
     "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],
     "import/no-extraneous-dependencies": [
-      "error",
+      "warn",
       { "devDependencies": ["**/*.test.tsx", "**/setupTests.ts"] }
     ],
     "import/extensions": [
-      "error",
+      "warn",
       "ignorePackages",
       {
         "ts": "never",
@@ -46,9 +48,9 @@
       }
     ],
     "no-shadow": "off",
-    "@typescript-eslint/no-shadow": ["error"],
-    "max-len": ["warn", { "code": 100 }],
-    "react-hooks/rules-of-hooks": "error",
+    "@typescript-eslint/no-shadow": ["warn"],
+    "max-len": ["warn", { "code": 110 }],
+    "react-hooks/rules-of-hooks": "warn",
     "react-hooks/exhaustive-deps": "warn",
     "no-restricted-imports": [
       "warn",
@@ -63,19 +65,19 @@
     ],
     "react/require-default-props": "off",
     "react/function-component-definition": [
-      "error",
+      "warn",
       {
         "namedComponents": "arrow-function",
         "unnamedComponents": "arrow-function"
       }
     ],
     "object-curly-newline": "off",
-    "arrow-parens": ["error", "as-needed"],
+    "arrow-parens": ["warn", "as-needed"],
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "comma-dangle": "off",
     "@typescript-eslint/comma-dangle": [
-      "error", 
+      "warn", 
       {
         "arrays": "always-multiline",
         "exports": "always-multiline",

@@ -1,6 +1,10 @@
+/* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable prettier/prettier */
-import React, { useState } from 'react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
+import { useNavigate } from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -23,8 +27,14 @@ const SignIn = () => {
     password: '',
     showPassword: false,
   });
+  const navigate = useNavigate();
+  const [callSignIn, { data, error, isError, isSuccess, isLoading }] = useSignInMutation();
 
-  const [callSignIn, { data, error, isError, isSuccess }] = useSignInMutation();
+  useEffect(() => {
+    if (isSuccess) {
+      navigate('/');
+    }
+  }, [isSuccess, navigate]);
 
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -75,7 +85,7 @@ const SignIn = () => {
             onChange={handleChange('password')}
             placeholder="Type your password"
             sx={{ borderRadius: '8px' }}
-            endAdornment={(
+            endAdornment={
               <InputAdornment position="end">
                 <IconButton
                   aria-label="toggle password visibility"
@@ -86,25 +96,24 @@ const SignIn = () => {
                   {values.showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
-            )}
+            }
           />
         </FormControl>
       </>
-      {console.log('data')}
-      {console.log(data)}
-      {console.log('isError')}
-      {console.log(isError)}
-      {console.log('isSuccess')}
-      {console.log(isSuccess)}
-      {console.log('error')}
-      {console.log(error)}
-      <button
-        type="button"
-        className={`submit-form-button ${(!values.email || !values.password) && 'disabled'}`}
-        onClick={onSubmitHandler}
-      >
-        Log in
-      </button>
+      {isLoading ? (
+        <Box sx={{ display: 'flex', justifyContent: 'center', padding: '1.2rem' }}>
+          <CircularProgress />
+        </Box>
+      ) : (
+        <button
+          type="button"
+          className={`submit-form-button ${(!values.email || !values.password) && 'disabled'}`}
+          onClick={onSubmitHandler}
+          onSubmit={onSubmitHandler}
+        >
+          Log in
+        </button>
+      )}
       <p className="paragraph-secondary">I forgot my password</p>
     </Box>
   );
