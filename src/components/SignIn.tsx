@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
+import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
 import IconButton from '@mui/material/IconButton';
@@ -11,9 +12,9 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { useSignInMutation } from '../store/features/api/api-slice';
 import '../styles/common/paragraph.scss';
 import '../styles/containers/signIn.scss';
+import { signInRequest } from '../api/queries';
 
 interface State {
   email: string;
@@ -27,14 +28,15 @@ const SignIn = () => {
     password: '',
     showPassword: false,
   });
+
   const navigate = useNavigate();
-  const [callSignIn, { data, error, isError, isSuccess, isLoading }] = useSignInMutation();
+  const loginMutation = useMutation(() => signInRequest(values.email, values.password));
 
   useEffect(() => {
-    if (isSuccess) {
+    if (loginMutation.isSuccess) {
       navigate('/');
     }
-  }, [isSuccess, navigate]);
+  }, [loginMutation.isSuccess, navigate]);
 
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -52,7 +54,7 @@ const SignIn = () => {
   };
 
   const onSubmitHandler = () => {
-    callSignIn({ email: values.email, password: values.password });
+    loginMutation.mutate();
   };
 
   return (
@@ -100,7 +102,7 @@ const SignIn = () => {
           />
         </FormControl>
       </>
-      {isLoading ? (
+      {loginMutation.isLoading ? (
         <Box sx={{ display: 'flex', justifyContent: 'center', padding: '1.2rem' }}>
           <CircularProgress />
         </Box>
