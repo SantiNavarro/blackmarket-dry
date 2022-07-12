@@ -1,0 +1,11 @@
+@import '../common/constants.scss';
+
+.login {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    background-image: url('../../assets/blackMarketWallpaper.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+};

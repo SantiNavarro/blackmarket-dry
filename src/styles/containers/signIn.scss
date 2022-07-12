@@ -1,0 +1,52 @@
+@import '../common/constants.scss';
+@import '../settings';
+
+.submit-form-button {
+    height: 48px;
+    width: 100%;
+    left: 0px;
+    top: 164px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    margin: 1.6rem 0;
+    border-radius: 8px;
+    border: none;
+    background-color: $black;
+    color: $white;
+    &__disabled {
+        background-color: $dark-grey-1;
+        color: $dark-grey-2;
+    };
+
+} 
+.sign-in {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 47px 10px 0px;
+  gap: 48px;
+  position: absolute;
+  height: auto;
+  background-color: $white;
+  min-height: 100px;
+  width: 360px;
+  z-index: 2;
+  border-radius: 8px;
+  left: 193px;
+  top: 60px;
+  max-width: 80%;
+  @media screen and (max-width: $breakpoints-small) {
+    left: 5%;
+    top: 8%;
+  };
+  &__logo {
+    position: relative;
+    width: 173px;
+    height: 30px;
+    top: 0;
+  };
+}

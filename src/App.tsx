@@ -1,22 +1,43 @@
+/* eslint-disable react/jsx-wrap-multilines */
 import { Suspense } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import routes from './routes';
-import paths from './routes/paths';
+import { Routes, Route } from 'react-router-dom';
+// import HomePage from './pages/Home';
+import SignInPage from './pages/Login';
+import SignUpPage from './pages/SignUp';
 
 import './App.scss';
+// import routes, { RouteInterface } from './routes';
 
 const App = () => (
-  <BrowserRouter>
-    <Routes>
-      {routes.map(route => (
-        <Route
-          index={route.path === paths.index}
-          path={route.path}
-          element={<Suspense fallback={<p>Loading...</p>}>{route.component}</Suspense>}
-        />
-      ))}
-    </Routes>
-  </BrowserRouter>
+  <Routes>
+    <Route
+      // index={route.path === paths.index}
+      path="/"
+      element={
+        <Suspense fallback={<p>Loading...</p>}>
+          <SignInPage />
+        </Suspense>
+      }
+    />
+    <Route
+      // index={route.path === paths.index}
+      path="/sign-in"
+      element={
+        <Suspense fallback={<p>Loading...</p>}>
+          <SignInPage />
+        </Suspense>
+      }
+    />
+    <Route
+      // index={route.path === paths.index}
+      path="/sign-up"
+      element={
+        <Suspense fallback={<p>Loading...</p>}>
+          <SignUpPage />
+        </Suspense>
+      }
+    />
+  </Routes>
 );
 
 export default App;
