@@ -2,28 +2,30 @@
 @import '../settings';
 
 .submit-form-button {
-    height: 48px;
-    width: 100%;
-    left: 0px;
-    top: 164px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0px;
-    margin: 1.6rem 0;
-    border-radius: 8px;
-    border: none;
-    background-color: $black;
-    color: $white;
-    cursor: pointer;
-    &__disabled {
-        background-color: $dark-grey-1;
-        color: $dark-grey-2;
-    };
+  height: 48px;
+  width: 100%;
+  left: 0px;
+  top: 164px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  margin: 1.6rem 0;
+  border-radius: 8px;
+  border: none;
+  background-color: $black;
+  color: $white;
+  cursor: pointer;
+}
+.submit-form-button-disabled {
+  @extend .submit-form-button;
+  background-color: $dark-grey-1;
+  color: $dark-grey-2;
+  cursor: auto;
+}
 
-} 
 .sign-in {
   display: flex;
   flex-direction: column;
@@ -43,11 +45,11 @@
   @media screen and (max-width: $breakpoints-small) {
     left: 5%;
     top: 8%;
-  };
+  }
   &__logo {
     position: relative;
     width: 173px;
     height: 30px;
     top: 0;
-  };
+  }
 }

@@ -114,9 +114,12 @@ const SignIn = () => {
       ) : (
         <button
           type="button"
-          className={`submit-form-button ${(!values.email || !values.password) && 'disabled'}`}
+          className={
+            !values.email || !values.password ? 'submit-form-button-disabled' : 'submit-form-button'
+          }
           onClick={onSubmitHandler}
           onSubmit={onSubmitHandler}
+          disabled={!values.email || !values.password}
         >
           Log in
         </button>
