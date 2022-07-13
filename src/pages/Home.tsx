@@ -1,12 +1,27 @@
-import { selectUserData } from '../store/features/api/selectors';
-import { useAppSelector } from '../store/hooks';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { signOut } from '../store/slices/userSlice';
+import '../styles/common/paragraph.scss';
+import '../styles/containers/signIn.scss';
 
 const Home = () => {
-  const userState = useAppSelector(selectUserData);
+  const dispatch = useDispatch();
 
-  console.log('home user state');
-  console.log(userState);
-  return <div>Home</div>;
+  const navigate = useNavigate();
+
+  const logOutHandler = () => {
+    dispatch(signOut());
+    navigate('/sign-in');
+  };
+
+  return (
+    <div>
+      <p className="paragraph-secondary">Home</p>
+      <button type="button" className="submit-form-button" onClick={logOutHandler}>
+        Log out
+      </button>
+    </div>
+  );
 };
 
 export default Home;

@@ -2,6 +2,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Box from '@mui/material/Box';
 import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +16,6 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import '../styles/common/paragraph.scss';
 import '../styles/containers/signIn.scss';
 import { signInRequest } from '../api/queries';
-import { useAppDispatch } from '../store';
 import { signIn } from '../store/slices/userSlice';
 
 interface State {
@@ -30,14 +30,14 @@ const SignIn = () => {
     password: '',
     showPassword: false,
   });
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
   const loginMutation = useMutation(() => signInRequest(values.email, values.password));
 
   useEffect(() => {
     if (loginMutation.isSuccess) {
-      const { email, name } = loginMutation.data.data;
+      const { email, name } = loginMutation?.data?.data?.data || {};
       dispatch(signIn({ email, name }));
       navigate('/');
     }
