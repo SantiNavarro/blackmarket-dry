@@ -15,6 +15,8 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import '../styles/common/paragraph.scss';
 import '../styles/containers/signIn.scss';
 import { signInRequest } from '../api/queries';
+import { useAppDispatch } from '../store';
+import { signIn } from '../store/slices/userSlice';
 
 interface State {
   email: string;
@@ -28,12 +30,15 @@ const SignIn = () => {
     password: '',
     showPassword: false,
   });
+  const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
   const loginMutation = useMutation(() => signInRequest(values.email, values.password));
 
   useEffect(() => {
     if (loginMutation.isSuccess) {
+      const { email, name } = loginMutation.data.data;
+      dispatch(signIn({ email, name }));
       navigate('/');
     }
   }, [loginMutation.isSuccess, navigate]);

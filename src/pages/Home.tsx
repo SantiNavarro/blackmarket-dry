@@ -1,10 +1,11 @@
-import { useSelector } from 'react-redux';
-import { selectApiData } from '../store/features/api/selectors';
+import { selectUserData } from '../store/features/api/selectors';
+import { useAppSelector } from '../store/hooks';
 
 const Home = () => {
-  const apiState = useSelector(selectApiData);
-  console.log('home api state');
-  console.log(apiState);
+  const userState = useAppSelector(selectUserData);
+
+  console.log('home user state');
+  console.log(userState);
   return <div>Home</div>;
 };
 

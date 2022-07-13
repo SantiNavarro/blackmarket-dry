@@ -1,12 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { apiSlice } from './features/api/api-slice';
+import { useDispatch } from 'react-redux';
+import userSlice from './slices/userSlice';
 
 export const store = configureStore({
   reducer: {
-    [apiSlice.reducerPath]: apiSlice.reducer,
+    user: userSlice,
   },
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(apiSlice.middleware),
 });
 
-export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
+
+export type AppDispatch = typeof store.dispatch;
+export const useAppDispatch: () => AppDispatch = useDispatch;
+
+export default store;
