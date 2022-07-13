@@ -17,6 +17,7 @@ import '../styles/common/paragraph.scss';
 import '../styles/containers/signIn.scss';
 import { signInRequest } from '../api/queries';
 import { signIn } from '../store/slices/userSlice';
+import Toast from './Toast';
 
 interface State {
   email: string;
@@ -25,6 +26,7 @@ interface State {
 }
 
 const SignIn = () => {
+  const [toastStatus, setToastStatus] = useState<boolean>(false);
   const [values, setValues] = useState<State>({
     email: '',
     password: '',
@@ -41,7 +43,10 @@ const SignIn = () => {
       dispatch(signIn({ email, name }));
       navigate('/');
     }
-  }, [loginMutation.isSuccess, navigate]);
+    if (loginMutation.isError) {
+      setToastStatus(true);
+    }
+  }, [loginMutation.isError, loginMutation.isSuccess, navigate]);
 
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -49,6 +54,9 @@ const SignIn = () => {
 
   const handleChange = (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [prop]: event.target.value });
+    if (setToastStatus) {
+      setToastStatus(false);
+    }
   };
 
   const handleClickShowPassword = () => {
@@ -70,6 +78,7 @@ const SignIn = () => {
       }}
       autoComplete="off"
     >
+      <Toast open={toastStatus} />
       <>
         <FormControl sx={{ width: '100%' }} variant="filled">
           <p>Email</p>
