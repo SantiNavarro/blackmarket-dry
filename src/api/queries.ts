@@ -1,8 +1,10 @@
 import axios from 'axios';
 
+const baseUrl = process.env.REACT_APP_API_URL;
+
 export const signInRequest = async (email: string, password: string) => {
   const response = await axios.post(
-    `http://blackmarket-api.herokuapp.com/api/v1/auth/sign_in?password=${password}&email=${email}`,
+    `${baseUrl}/auth/sign_in?password=${password}&email=${email}`,
     {},
     {
       headers: {
@@ -21,6 +23,6 @@ export const signUpRequest = async (email: string, password: string, name: strin
       name,
     },
   };
-  const response = await axios.post('http://blackmarket-api.herokuapp.com/api/v1/auth', body);
+  const response = await axios.post(`${baseUrl}/auth`, body);
   return response;
 };

@@ -1,9 +1,9 @@
-import Authentication from '../components/Authentication';
+import SignIn from '../components/SignIn';
 import '../styles/containers/login.scss';
 
 const Login = () => (
   <div className="login">
-    <Authentication />
+    <SignIn />
   </div>
 );
 

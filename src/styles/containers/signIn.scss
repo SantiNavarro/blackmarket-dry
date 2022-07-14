@@ -26,12 +26,23 @@
   cursor: auto;
 }
 
+.submit-form-button-secondary {
+  @extend .submit-form-button;
+  background-color: $white;
+  color: $black;
+  border: 1px $black solid;
+  margin: 0;
+}
+
+.form-control-container {
+  width: 90%;
+}
+
 .sign-in {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 47px 10px 0px;
-  gap: 48px;
   position: absolute;
   height: auto;
   background-color: $white;
@@ -41,7 +52,7 @@
   border-radius: 8px;
   left: 193px;
   top: 60px;
-  max-width: 80%;
+  max-width: 100%;
   @media screen and (max-width: $breakpoints-small) {
     left: 5%;
     top: 8%;
