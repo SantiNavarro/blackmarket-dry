@@ -32,7 +32,9 @@
     }
   ],
   "rules": {
-    "arrow-body-style": ["warn", "always"],
+    "no-useless-escape": "off", 
+    "implicit-arrow-linebreak": "off",
+    "arrow-body-style": "off",
     "no-unused-vars": "warn",
     "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],
     "import/no-extraneous-dependencies": [

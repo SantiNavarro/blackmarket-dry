@@ -18,5 +18,15 @@
     font-size: 16px;
     text-align: center;
     cursor: pointer;
-    margin: 2.4rem 0;
+    margin: 0.5rem 0;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  .info-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }

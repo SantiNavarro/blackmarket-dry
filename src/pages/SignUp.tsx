@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Box from '@mui/material/Box';
 import { useMutation } from 'react-query';
@@ -18,6 +18,8 @@ import '../styles/containers/signIn.scss';
 import { signUpRequest } from '../api/queries';
 import { signIn } from '../store/slices/userSlice';
 import BasicForm from '../components/BasicForm';
+import Toast from '../components/Toast';
+import { isValidEmail, isValidPassword } from '../utils/validators';
 
 interface State {
   email: string;
@@ -33,6 +35,10 @@ const SignUp = () => {
     password: '',
     showPassword: false,
   });
+  const [toastStatus, setToastStatus] = useState<boolean>(false);
+  const [toastMessage, setToastMessage] = useState<string>(
+    'There was an error trying to sign you up, try again later'
+  );
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -41,15 +47,15 @@ const SignUp = () => {
   });
 
   useEffect(() => {
-    console.log('loginMutation');
-    console.log(loginMutation);
-
     if (loginMutation.isSuccess) {
       const { email, name } = loginMutation?.data?.data?.data || {};
       dispatch(signIn({ email, name }));
       navigate('/');
     }
-  }, [loginMutation.isError, loginMutation.isSuccess, navigate]);
+    if (loginMutation.isError) {
+      setToastStatus(true);
+    }
+  }, [loginMutation, navigate, dispatch]);
 
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -57,6 +63,9 @@ const SignUp = () => {
 
   const handleChange = (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [prop]: event.target.value });
+    if (setToastStatus) {
+      setToastStatus(false);
+    }
   };
 
   const handleClickShowPassword = () => {
@@ -67,12 +76,23 @@ const SignUp = () => {
   };
 
   const onSubmitHandler = () => {
-    loginMutation.mutate();
+    if (!isValidEmail(values.email)) {
+      setToastMessage('Invalid email format');
+      setToastStatus(true);
+    } else if (!isValidPassword(values.password)) {
+      setToastMessage('Invalid password format, 6 characters minimum');
+      setToastStatus(true);
+    } else {
+      setToastStatus(false);
+      setToastMessage('There was an error trying to sign you up, try again later');
+      loginMutation.mutate();
+    }
   };
 
   return (
     <div className="login">
       <div className="basic-form-position">
+        <Toast open={toastStatus} message={toastMessage} />
         <BasicForm showLogo>
           <div className="form-control-container">
             <div className="inputs-container">
@@ -142,9 +162,26 @@ const SignUp = () => {
                 Sign up
               </button>
             )}
-            <p className="paragraph-secondary">
-              By signing up, you accept the Data Policy and the Cookies Policy
-            </p>
+            <div className="info-wrapper">
+              <p>
+                By signing up, you accept the
+                <span className="paragraph-secondary"> Data Policy </span>
+                and the
+                <span className="paragraph-secondary"> Cookies Policy</span>
+              </p>
+              <p>
+                Already have an account?
+                <span>
+                  <button
+                    type="button"
+                    onClick={() => navigate('/sign-in')}
+                    className="paragraph-secondary"
+                  >
+                    Log in
+                  </button>
+                </span>
+              </p>
+            </div>
           </div>
         </BasicForm>
       </div>

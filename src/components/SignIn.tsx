@@ -76,7 +76,10 @@ const SignIn = () => {
     <div className="basic-form-position">
       <BasicForm showLogo>
         <div className="form-control-container">
-          <Toast open={toastStatus} />
+          <Toast
+            open={toastStatus}
+            message="Your credentials are invalid, or you are not Signed Up"
+          />
           <div className="inputs-container">
             <FormControl sx={{ minWidth: '100%' }} variant="filled">
               <p>Email</p>
