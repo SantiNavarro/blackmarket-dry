@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import Box from '@mui/material/Box';
 import { useMutation } from 'react-query';
@@ -28,8 +28,8 @@ interface State {
 }
 
 const SignIn = () => {
-  const [toastStatus, setToastStatus] = useState<boolean>(false);
-  const [values, setValues] = useState<State>({
+  const [toastStatus, setToastStatus] = React.useState<boolean>(false);
+  const [values, setValues] = React.useState<State>({
     email: '',
     password: '',
     showPassword: false,
@@ -39,7 +39,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   const loginMutation = useMutation(() => signInRequest(values.email, values.password));
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (loginMutation.isSuccess) {
       const { email, name } = loginMutation?.data?.data?.data || {};
       dispatch(signIn({ email, name }));
