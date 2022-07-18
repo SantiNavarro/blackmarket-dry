@@ -1,0 +1,184 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`My app renders correctly 1`] = `
+<div
+  className="login"
+>
+  <div
+    className="basic-form-position"
+  >
+    <div
+      className="basic-form"
+    >
+      <img
+        alt="basic-form__logo"
+        className="basic-form__logo"
+        src="blackMarketLogo.png"
+      />
+      <div
+        className="form-control-container"
+      >
+        <div
+          className="inputs-container"
+        >
+          <div
+            className="MuiFormControl-root css-1uitn3s-MuiFormControl-root"
+          >
+            <p>
+              Email
+            </p>
+            <div
+              className="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1av2g8m-MuiInputBase-root-MuiOutlinedInput-root"
+              onClick={[Function]}
+            >
+              <input
+                aria-invalid={false}
+                className="MuiOutlinedInput-input MuiInputBase-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
+                disabled={false}
+                id="outlined-adornment-email"
+                onAnimationStart={[Function]}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                placeholder="Type your email"
+                required={false}
+                type="text"
+                value=""
+              />
+              <fieldset
+                aria-hidden={true}
+                className="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+              >
+                <legend
+                  className="css-hdw1oc"
+                >
+                  <span
+                    className="notranslate"
+                  >
+                    ​
+                  </span>
+                </legend>
+              </fieldset>
+            </div>
+          </div>
+          <div
+            className="MuiFormControl-root css-1uitn3s-MuiFormControl-root"
+          >
+            <p
+              className="paragraph"
+            >
+              Password
+            </p>
+            <div
+              className="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-1sxxfr2-MuiInputBase-root-MuiOutlinedInput-root"
+              onClick={[Function]}
+              required={true}
+            >
+              <input
+                aria-invalid={false}
+                className="MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
+                disabled={false}
+                id="outlined-adornment-password"
+                onAnimationStart={[Function]}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                placeholder="Type your password"
+                required={true}
+                type="password"
+                value=""
+              />
+              <div
+                className="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-filled MuiInputAdornment-sizeMedium css-jv61v3-MuiInputAdornment-root"
+              >
+                <button
+                  aria-label="toggle password visibility"
+                  className="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onContextMenu={[Function]}
+                  onDragLeave={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                  tabIndex={0}
+                  type="button"
+                >
+                  <svg
+                    aria-hidden={true}
+                    className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                    data-testid="VisibilityIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <fieldset
+                aria-hidden={true}
+                className="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+              >
+                <legend
+                  className="css-hdw1oc"
+                >
+                  <span
+                    className="notranslate"
+                  >
+                    ​
+                  </span>
+                </legend>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+        <button
+          className="submit-form-button-disabled"
+          disabled={true}
+          onClick={[Function]}
+          onSubmit={[Function]}
+          type="button"
+        >
+          Log in
+        </button>
+        <p
+          className="paragraph-secondary"
+        >
+          I forgot my password
+        </p>
+      </div>
+    </div>
+    <div
+      className="basic-form"
+    >
+      <div
+        className="basic-form"
+      >
+        <div
+          className="dontHaveAccount"
+        >
+          <p>
+            Dont have an account?
+          </p>
+          <button
+            className="submit-form-button-secondary"
+            onClick={[Function]}
+            type="button"
+          >
+            Sign up
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
