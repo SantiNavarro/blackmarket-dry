@@ -13,10 +13,11 @@ test('renders Sign in component', () => {
     },
   });
   const queryClient = new QueryClient();
+
   render(
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
-        <MemoryRouter initialEntries={['/', '/sign-in']}>
+        <MemoryRouter initialEntries={['/sign-in']}>
           <SignIn />
         </MemoryRouter>
       </QueryClientProvider>

@@ -4,7 +4,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import Box from '@mui/material/Box';
-import { useMutation } from 'react-query';
+import {useMutation} from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
 import IconButton from '@mui/material/IconButton';
