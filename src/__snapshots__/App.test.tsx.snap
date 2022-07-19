@@ -28,7 +28,7 @@ exports[`My app renders correctly 1`] = `
               Email
             </p>
             <div
-              className="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1av2g8m-MuiInputBase-root-MuiOutlinedInput-root"
+              className="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl outlined-adornment-email css-1av2g8m-MuiInputBase-root-MuiOutlinedInput-root"
               onClick={[Function]}
             >
               <input

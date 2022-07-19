@@ -4,7 +4,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import Box from '@mui/material/Box';
-import {useMutation} from 'react-query';
+import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
 import IconButton from '@mui/material/IconButton';
@@ -71,6 +71,8 @@ const SignIn = () => {
   const onSubmitHandler = () => {
     loginMutation.mutate();
   };
+  console.log('values');
+  console.log(values);
 
   return (
     <div className="basic-form-position">
@@ -85,6 +87,7 @@ const SignIn = () => {
               <p>Email</p>
               <OutlinedInput
                 id="outlined-adornment-email"
+                className="outlined-adornment-email"
                 type="text"
                 value={values.email}
                 onChange={handleChange('email')}
