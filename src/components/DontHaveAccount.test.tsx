@@ -10,5 +10,5 @@ test('renders Dont have an account? paragraph', () => {
     </BrowserRouter>
   );
   const linkElement = screen.getByText(/Dont have an account?/i);
-  expect(linkElement).toBeInTheDocument(); 
+  expect(linkElement).toBeInTheDocument();
 });

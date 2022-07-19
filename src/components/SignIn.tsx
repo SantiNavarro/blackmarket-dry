@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Box from '@mui/material/Box';
 import { useMutation } from 'react-query';
@@ -28,8 +28,8 @@ interface State {
 }
 
 const SignIn = () => {
-  const [toastStatus, setToastStatus] = React.useState<boolean>(false);
-  const [values, setValues] = React.useState<State>({
+  const [toastStatus, setToastStatus] = useState<boolean>(false);
+  const [values, setValues] = useState<State>({
     email: '',
     password: '',
     showPassword: false,
@@ -39,7 +39,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   const loginMutation = useMutation(() => signInRequest(values.email, values.password));
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (loginMutation.isSuccess) {
       const { email, name } = loginMutation?.data?.data?.data || {};
       dispatch(signIn({ email, name }));
@@ -48,7 +48,7 @@ const SignIn = () => {
     if (loginMutation.isError) {
       setToastStatus(true);
     }
-  }, [loginMutation.isError, loginMutation.isSuccess, navigate]);
+  }, [loginMutation, dispatch, navigate]);
 
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -71,8 +71,6 @@ const SignIn = () => {
   const onSubmitHandler = () => {
     loginMutation.mutate();
   };
-  console.log('values');
-  console.log(values);
 
   return (
     <div className="basic-form-position">
