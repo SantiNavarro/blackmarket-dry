@@ -2,14 +2,15 @@ import Snackbar from '@mui/material/Snackbar';
 
 interface ToastProps {
   open: boolean;
+  message: string;
 }
 
-const Toast = ({ open = false }: ToastProps) => {
+const Toast = ({ open = false, message }: ToastProps) => {
   return (
     <Snackbar
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={open}
-      message="Your credentials are invalid, or you are not Signed Up"
+      message={message}
       key="topright"
     />
   );

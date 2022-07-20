@@ -18,6 +18,8 @@ import '../styles/containers/signIn.scss';
 import { signInRequest } from '../api/queries';
 import { signIn } from '../store/slices/userSlice';
 import Toast from './Toast';
+import BasicForm from './BasicForm';
+import DontHaveAccount from './DontHaveAccount';
 
 interface State {
   email: string;
@@ -71,70 +73,76 @@ const SignIn = () => {
   };
 
   return (
-    <Box
-      component="form"
-      sx={{
-        '& .MuiTextField-root': { width: '100%w' },
-      }}
-      autoComplete="off"
-    >
-      <Toast open={toastStatus} />
-      <>
-        <FormControl sx={{ width: '100%' }} variant="filled">
-          <p>Email</p>
-          <OutlinedInput
-            id="outlined-adornment-email"
-            type="text"
-            value={values.email}
-            onChange={handleChange('email')}
-            placeholder="Type your email"
-            sx={{ borderRadius: '8px' }}
+    <div className="basic-form-position">
+      <BasicForm showLogo>
+        <div className="form-control-container">
+          <Toast
+            open={toastStatus}
+            message="Your credentials are invalid, or you are not Signed Up"
           />
-        </FormControl>
-        <FormControl sx={{ width: '100%' }} variant="filled">
-          <p className="paragraph">Password</p>
-          <OutlinedInput
-            required
-            id="outlined-adornment-password"
-            type={values.showPassword ? 'text' : 'password'}
-            value={values.password}
-            onChange={handleChange('password')}
-            placeholder="Type your password"
-            sx={{ borderRadius: '8px' }}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-          />
-        </FormControl>
-      </>
-      {loginMutation.isLoading ? (
-        <Box sx={{ display: 'flex', justifyContent: 'center', padding: '1.2rem' }}>
-          <CircularProgress />
-        </Box>
-      ) : (
-        <button
-          type="button"
-          className={
-            !values.email || !values.password ? 'submit-form-button-disabled' : 'submit-form-button'
-          }
-          onClick={onSubmitHandler}
-          onSubmit={onSubmitHandler}
-          disabled={!values.email || !values.password}
-        >
-          Log in
-        </button>
-      )}
-      <p className="paragraph-secondary">I forgot my password</p>
-    </Box>
+          <div className="inputs-container">
+            <FormControl sx={{ minWidth: '100%' }} variant="filled">
+              <p>Email</p>
+              <OutlinedInput
+                id="outlined-adornment-email"
+                type="text"
+                value={values.email}
+                onChange={handleChange('email')}
+                placeholder="Type your email"
+                sx={{ borderRadius: '8px' }}
+              />
+            </FormControl>
+            <FormControl sx={{ minWidth: '100%' }} variant="filled">
+              <p className="paragraph">Password</p>
+              <OutlinedInput
+                required
+                id="outlined-adornment-password"
+                type={values.showPassword ? 'text' : 'password'}
+                value={values.password}
+                onChange={handleChange('password')}
+                placeholder="Type your password"
+                sx={{ borderRadius: '8px' }}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+          </div>
+          {loginMutation.isLoading ? (
+            <Box sx={{ display: 'flex', justifyContent: 'center', padding: '1.2rem' }}>
+              <CircularProgress />
+            </Box>
+          ) : (
+            <button
+              type="button"
+              className={
+                !values.email || !values.password
+                  ? 'submit-form-button-disabled'
+                  : 'submit-form-button'
+              }
+              onClick={onSubmitHandler}
+              onSubmit={onSubmitHandler}
+              disabled={!values.email || !values.password}
+            >
+              Log in
+            </button>
+          )}
+          <p className="paragraph-secondary">I forgot my password</p>
+        </div>
+      </BasicForm>
+      <BasicForm>
+        <DontHaveAccount />
+      </BasicForm>
+    </div>
   );
 };
 
