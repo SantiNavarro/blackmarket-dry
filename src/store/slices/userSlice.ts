@@ -4,12 +4,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-interface UserState {
+export interface UserState {
   email: string;
   name: string;
 }
 
-const initialState = { email: '', name: '' } as UserState;
+export const initialState = { email: '', name: '' } as UserState;
 
 const userSlice = createSlice({
   name: 'user',

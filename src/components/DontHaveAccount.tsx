@@ -11,7 +11,7 @@ const DontHaveAccount = () => {
   return (
     <BasicForm>
       <div className="dontHaveAccount">
-        <p>Don't have an account?</p>
+        <p>Dont have an account?</p>
         <button
           type="button"
           className="submit-form-button-secondary"

@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Box from '@mui/material/Box';
 import { useMutation } from 'react-query';
@@ -48,7 +48,7 @@ const SignIn = () => {
     if (loginMutation.isError) {
       setToastStatus(true);
     }
-  }, [loginMutation.isError, loginMutation.isSuccess, navigate]);
+  }, [loginMutation, dispatch, navigate]);
 
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -85,6 +85,7 @@ const SignIn = () => {
               <p>Email</p>
               <OutlinedInput
                 id="outlined-adornment-email"
+                className="outlined-adornment-email"
                 type="text"
                 value={values.email}
                 onChange={handleChange('email')}
