@@ -6,6 +6,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `npm run dev`
+
+Starts up Docker container, installing dependencies and starting up the app(make sure to have Docker app running in the background first)
 ### `npm install`
 
 Installs dependencies
