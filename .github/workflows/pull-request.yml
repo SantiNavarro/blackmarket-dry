@@ -28,6 +28,9 @@ jobs:
           restore-keys: |
             nodeModules-
 
+      - name: Clear npm cache
+        run: npm cache clean --force
+
       - name: Install dependencies 
         run: npm install
 
