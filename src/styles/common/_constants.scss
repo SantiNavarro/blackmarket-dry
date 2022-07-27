@@ -33,6 +33,19 @@ $organization-stucture-background-color: rgba(69, 65, 78, .08);
 $modal-background: rgba(0, 0, 0, .2);
 
 
+$clr-primary: $white;
+$clr-secondary: $yellow-1;
+$clr-accent: #e5389b;
+$clr-neutral-light: #efefef;
+$clr-neutral-dark: #323232;
+
+$simple-gradient: $clr-primary, $clr-secondary;
+$complex-gradient: $clr-primary, $clr-secondary, $clr-accent;
+
+$scheme-default: $clr-neutral-light, $clr-primary;
+$scheme-secondary: $clr-neutral-dark, $clr-secondary;
+$scheme-accent-gradient: $clr-neutral-dark, $complex-gradient;
+$scheme-simple-gradient: $clr-neutral-dark, $simple-gradient;
 
 // FONTS
 $roboto: 'Roboto', sans-serif;

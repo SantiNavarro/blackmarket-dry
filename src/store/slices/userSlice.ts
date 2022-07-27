@@ -4,12 +4,23 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-export interface UserState {
+export interface UserCredentials {
+  client: string;
+  accessToken: string;
+  uid: string;
+}
+export interface UserState extends UserCredentials {
   email: string;
   name: string;
 }
 
-export const initialState = { email: '', name: '' } as UserState;
+export const initialState = {
+  email: '',
+  name: '',
+  client: '',
+  accessToken: '',
+  uid: '',
+} as UserState;
 
 const userSlice = createSlice({
   name: 'user',
