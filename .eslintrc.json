@@ -28,11 +28,14 @@
       "files": ["*.ts", "*.tsx"],
       "rules": {
         "no-undef": "off"
+      },
+      "parserOptions": {
+        "project": ["./tsconfig.json"] // Specify it only for TypeScript files
       }
     }
   ],
   "rules": {
-    "no-useless-escape": "off", 
+    "no-useless-escape": "off",
     "implicit-arrow-linebreak": "off",
     "arrow-body-style": "off",
     "no-unused-vars": "warn",
@@ -79,7 +82,7 @@
     "react/react-in-jsx-scope": "off",
     "comma-dangle": "off",
     "@typescript-eslint/comma-dangle": [
-      "warn", 
+      "warn",
       {
         "arrays": "always-multiline",
         "exports": "always-multiline",

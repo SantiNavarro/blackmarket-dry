@@ -1,5 +1,6 @@
 build
 node_modules
-
+dangerfile.ts
 *.scss
 *.svg
+*.js

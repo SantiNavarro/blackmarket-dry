@@ -45,8 +45,17 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
+## Pull Requests
+
+This repository uses different github actions workflows which allow validating the correct functioning and quality of the PRs made by running tests and using [DangerJS](https://danger.systems/js/).
+
+Also, we have a PR template that should be used to share knowledge and prep reviewers on what the
+changes are doing, how it can be tested, etc. The template is found in
+[.github/PULL_REQUEST_TEMPLATE.md](PULL_REQUEST_TEMPLATE.md).
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
