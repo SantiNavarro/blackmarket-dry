@@ -6,7 +6,7 @@ type Props = {
 };
 const BasicForm = ({ children, showLogo = false }: Props) => (
   <div className="basic-form">
-    {showLogo && <div className="basic-form__logo" />}
+    {showLogo && <div role="img" className="basic-form__logo" />}
     {children}
   </div>
 );

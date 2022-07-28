@@ -12,6 +12,7 @@ exports[`My app renders correctly 1`] = `
     >
       <div
         className="basic-form__logo"
+        role="img"
       />
       <div
         className="form-control-container"
