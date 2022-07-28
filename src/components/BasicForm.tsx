@@ -1,5 +1,4 @@
 import '../styles/containers/basicForm.scss';
-import Logo from '../assets/blackMarketLogo.png';
 
 type Props = {
   children: React.ReactChild;
@@ -7,7 +6,7 @@ type Props = {
 };
 const BasicForm = ({ children, showLogo = false }: Props) => (
   <div className="basic-form">
-    {showLogo && <img src={Logo} className="basic-form__logo" alt="basic-form__logo" />}
+    {showLogo && <div className="basic-form__logo" />}
     {children}
   </div>
 );

@@ -8,14 +8,14 @@ export interface ThemeState {
   status: boolean;
 }
 
-export const initialState = { status: true } as ThemeState;
+export const initialState = { status: false } as ThemeState;
 
 const themeSlice = createSlice({
   name: 'theme',
   initialState,
   reducers: {
     toggleTheme: state => {
-      state = { status: !!state.status };
+      state = { status: !state.status };
       return state;
     },
   },

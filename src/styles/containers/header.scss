@@ -1,0 +1,42 @@
+@import '../common/constants.scss';
+@import '../settings';
+@import '../common/mixins';
+
+.header-container {
+  display: flex;
+  width: 100%;
+  max-width: 100vw;
+  align-items: center;
+  padding-bottom: 100px;
+  @include color-scheme($white, $black);
+  overflow: hidden;
+  justify-content: space-around;
+}
+
+.header-theme-secondary {
+  @include color-scheme($white, $yellow-1);
+}
+
+.img-logo {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 10px 0px;
+  position: relative;
+  height: auto;
+  background-color: $black;
+  min-height: 10px;
+  width: 360px;
+  z-index: 2;
+  border-radius: 8px;
+  max-width: 100%;
+  position: relative;
+  width: 130px;
+  height: 25px;
+  margin: 20px;
+  top: 0;
+  background-color: $white;
+  mask: url(../../assets/blackMarketLogo.svg) no-repeat center / contain;
+  -webkit-mask: url(../../assets/blackMarketLogo.svg) no-repeat center / contain;
+}

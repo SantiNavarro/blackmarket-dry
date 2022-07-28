@@ -10,10 +10,8 @@ exports[`My app renders correctly 1`] = `
     <div
       className="basic-form"
     >
-      <img
-        alt="basic-form__logo"
+      <div
         className="basic-form__logo"
-        src="blackMarketLogo.png"
       />
       <div
         className="form-control-container"
