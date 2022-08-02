@@ -2,11 +2,19 @@
 @import '../settings';
 @import '../common/mixins';
 
+.select-container {
+  display: flex;
+}
 .select {
   @include color-scheme($white, $black);
+  display: flex;
   height: 3em;
   border-radius: 0.4em;
   padding: 0.5em;
+  margin-right: 1rem;
+  @media screen and (max-width: $breakpoints-small) {
+    margin-top: 1rem;
+  }
 }
 
 .select-secondary {
@@ -22,6 +30,7 @@
   align-items: center;
   border-width: thin;
   border-style: solid;
+
 }
 
 .shopping-button-secondary {

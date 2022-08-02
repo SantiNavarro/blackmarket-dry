@@ -39,6 +39,25 @@ const SignIn = () => {
   const navigate = useNavigate();
   const loginMutation = useMutation(() => signInRequest(values.email, values.password));
 
+  const onSubmitHandler = () => {
+    loginMutation.mutate();
+  };
+
+  useEffect(() => {
+    const keyDownHandler = (event: any) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        onSubmitHandler();
+      }
+    };
+
+    document.addEventListener('keydown', keyDownHandler);
+
+    return () => {
+      document.removeEventListener('keydown', keyDownHandler);
+    };
+  }, []);
+
   useEffect(() => {
     if (loginMutation.isSuccess) {
       const { email, name } = loginMutation?.data?.data?.data || {};
@@ -69,10 +88,6 @@ const SignIn = () => {
       ...values,
       showPassword: !values.showPassword,
     });
-  };
-
-  const onSubmitHandler = () => {
-    loginMutation.mutate();
   };
 
   return (
@@ -127,14 +142,14 @@ const SignIn = () => {
             </Box>
           ) : (
             <button
-              type="button"
+              type="submit"
               className={
                 !values.email || !values.password
                   ? 'submit-form-button-disabled'
                   : 'submit-form-button'
               }
-              onClick={onSubmitHandler}
               onSubmit={onSubmitHandler}
+              onClick={onSubmitHandler}
               disabled={!values.email || !values.password}
             >
               Log in

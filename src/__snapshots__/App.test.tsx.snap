@@ -145,7 +145,7 @@ exports[`My app renders correctly 1`] = `
           disabled={true}
           onClick={[Function]}
           onSubmit={[Function]}
-          type="button"
+          type="submit"
         >
           Log in
         </button>

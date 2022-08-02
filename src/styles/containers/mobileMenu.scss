@@ -1,0 +1,17 @@
+@import 'navigationSection.scss';
+
+.mobile-menu {
+    display: flex;
+    align-items: center;
+}
+.mobile-menu-vertical-button {
+  @extend .select;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+.mobile-menu-vertical-button-secondary {
+  @extend .select-secondary;
+}

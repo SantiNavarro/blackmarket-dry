@@ -7,20 +7,13 @@ import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../store/hooks';
 import { selectThemeStatus } from '../store/features/theme/selectors';
 import { signOut } from '../store/slices/userSlice';
+import { pickRoute } from '../utils/businessLogic';
 
 const NavigationDropDown = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const themeState = useAppSelector(selectThemeStatus);
 
-  const pickRoute = (value: string) => {
-    const routes: any = {
-      'My Account': '/my-account',
-      'Cart history': '/cart-history',
-      'Payment methods': '/payment-methods',
-    };
-    return routes[value] || '/';
-  };
   const handleChange = (event: any) => {
     if (event.target.value === 'Log out') {
       dispatch(signOut());
@@ -31,7 +24,7 @@ const NavigationDropDown = () => {
   };
 
   return (
-    <>
+    <div className="select-container">
       <select
         className={classNames({
           select: true,
@@ -46,6 +39,7 @@ const NavigationDropDown = () => {
         <option value="Log out">Log out</option>
       </select>
       <button
+        onClick={() => navigate('/cart')}
         className={classNames({
           'shopping-button': true,
           'shopping-button-secondary': themeState,
@@ -55,7 +49,7 @@ const NavigationDropDown = () => {
         Shopping Cart
         <ShoppingCartIcon />
       </button>
-    </>
+    </div>
   );
 };
 

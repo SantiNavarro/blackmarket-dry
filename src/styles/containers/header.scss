@@ -11,6 +11,28 @@
   @include color-scheme($white, $black);
   overflow: hidden;
   justify-content: space-around;
+  @media screen and (max-width: $breakpoints-small) {
+    padding: 0;
+  }
+}
+
+.header-browser-view {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.header-mobile-view {
+  @extend .header-browser-view;
+  flex-direction: column;
+  margin: 1rem 0;
+  &__children {
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+    width: 100%;
+  }
 }
 
 .header-theme-secondary {
