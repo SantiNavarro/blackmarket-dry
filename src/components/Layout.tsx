@@ -1,5 +1,6 @@
 import { ReactChild } from 'react';
 import '../styles/containers/layout.scss';
+import Footer from './Footer';
 import Header from './Header';
 
 type Props = {
@@ -11,6 +12,7 @@ const Layout = ({ children }: Props) => {
     <div className="layout">
       <Header />
       {children}
+      <Footer />
     </div>
   );
 };

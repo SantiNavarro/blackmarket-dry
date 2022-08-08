@@ -1,16 +1,23 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useMutation } from 'react-query';
 import { useDispatch } from 'react-redux';
 import { getListOfProducts } from '../api/queries';
 import { selectUserData } from '../store/features/api/selectors';
-import { selectProducts } from '../store/features/products/selectors';
+import { selectFirstFourProducts, selectProducts } from '../store/features/products/selectors';
 import { useAppSelector } from '../store/hooks';
-import { storeProducts } from '../store/slices/productsSlice';
+import { Product, storeProducts } from '../store/slices/productsSlice';
 import '../styles/containers/productsListing.scss';
+import Modal from './Modal';
+import ProductCard from './ProductCard';
 
 const ProductsListing = () => {
-  const productsState = useAppSelector(selectProducts);
+  const [modalOpen, setModalOpen] = useState(false);
+  const productsState = useAppSelector(selectFirstFourProducts);
+  const allProducts = useAppSelector(selectProducts);
+
   const userState = useAppSelector(selectUserData);
   const dispatch = useDispatch();
   const { mutateAsync, error } = useMutation('products', getListOfProducts);
@@ -24,9 +31,31 @@ const ProductsListing = () => {
       }
     };
     fetchProducts();
-  }, [dispatchEvent]);
+  }, [dispatch, mutateAsync, error, userState]);
 
-  return <p className="products-listing-container">{`productsListing:${productsState.length}`}</p>;
+  return (
+    <div className="products-listing">
+      <div className="products-listing-container">
+        {productsState?.map((product: Product) => (
+          <ProductCard product={product} key={`product-card-render-${product.id}}`} />
+        ))}
+      </div>
+      <p
+        // onKeyDown={setModalOpen(!modalOpen)}
+        // onClick={setModalOpen(!modalOpen)}
+        className="products-listing-see-all"
+      >
+        See all
+      </p>
+      {/* <Modal>
+        <div className="products-listing-container">
+          {allProducts?.map((product: Product) => (
+            <ProductCard product={product} key={`product-card-render-${product.id}}`} />
+          ))}
+        </div>
+      </Modal> */}
+    </div>
+  );
 };
 
 export default ProductsListing;

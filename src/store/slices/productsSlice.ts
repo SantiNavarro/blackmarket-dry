@@ -7,15 +7,25 @@ export const enhanceProducts = (products: Product[]): Product[] =>
   products
     .map((product: Product) => ({
       ...product,
-      image: 'https://cdn.ipadizate.com/2021/11/nuevo-MacBook-pro.jpg',
+      status: 'New',
+      image: 'https://www.collinsdictionary.com/images/full/chair_583020097_1000.jpg',
     }))
-    .flatMap((product: Product) => [product, product]);
+    .flatMap((product: Product) => [
+      product,
+      {
+        ...product,
+        image:
+          'http://t1.gstatic.com/licensed-image?q=tbn:ANd9GcS335HKPWiR1ei7g-3BPdEWsJJvB3jXPqqBL7oEqI_AA7DHy3CgTgS7i7Wd_5DJ9T7X6uRT4bczwGj-RLWoFNA',
+        status: 'Restored',
+      },
+    ]);
 
 export interface Product {
   id: number;
   name: string;
   description: string;
   price: string;
+  status: string;
   image?: string;
 }
 
@@ -29,8 +39,12 @@ const productsSlice = createSlice({
       state = enhanceProducts(action.payload);
       return state;
     },
+    storeNextPageOfProducts: (state, action: PayloadAction<Product[]>) => {
+      state = state.concat(enhanceProducts(action.payload));
+      return state;
+    },
   },
 });
 
-export const { storeProducts } = productsSlice.actions;
+export const { storeProducts, storeNextPageOfProducts } = productsSlice.actions;
 export default productsSlice.reducer;

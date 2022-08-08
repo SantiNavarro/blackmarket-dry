@@ -1,0 +1,127 @@
+@import '../common/constants.scss';
+@import '../settings';
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  background-color: $black-soft;
+  color: white;
+  padding: 5vw;
+  @media screen and (max-width: $breakpoints-small) {
+    flex-direction: column;
+  }
+}
+.footer-secondary {
+  @extend .footer;
+  background-color: $yellow-1;
+}
+.footer-bottom-content {
+  display: flex;
+  width: fit-content;
+  justify-content: space-between;
+  align-content: center;
+  flex-direction: column;
+  &__socials {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    padding-top: 5rem;
+    @media screen and (max-width: $breakpoints-small) {
+      justify-content: space-around;
+      margin: 2rem 0;
+      align-items: center;
+      padding-top: 0rem;
+    }
+  }
+  @media screen and (max-width: $breakpoints-small) {
+    flex-direction: column;
+  }
+}
+
+.footer-nav-list {
+  display: flex;
+}
+
+.footer-bm-logo {
+  position: relative;
+  width: 180px;
+  height: 45px;
+  top: 0;
+  background-color: $white;
+  mask: url(../../assets/blackMarketLogo.svg) no-repeat center / contain;
+  -webkit-mask: url(../../assets/blackMarketLogo.svg) no-repeat center / contain;
+}
+
+.footer-socials {
+  display: flex;
+  justify-content: space-between;
+}
+.footer-socials-instagram {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  top: 0;
+  background-color: $white;
+  mask: url(../../assets/instagram.svg) no-repeat center / contain;
+  -webkit-mask: url(../../assets/instagram.svg) no-repeat center / contain;
+  margin: 0.2rem;
+}
+
+.footer-socials-facebook {
+  @extend .footer-socials-instagram;
+  mask: url(../../assets/facebook.svg) no-repeat center / contain;
+  -webkit-mask: url(../../assets/facebook.svg) no-repeat center / contain;
+}
+
+.footer-socials-twitter {
+  @extend .footer-socials-instagram;
+  mask: url(../../assets/twitter.svg) no-repeat center / contain;
+  -webkit-mask: url(../../assets/twitter.svg) no-repeat center / contain;
+}
+.footer-socials-linkedin {
+  @extend .footer-socials-instagram;
+  mask: url(../../assets/linkedin.svg) no-repeat center / contain;
+  -webkit-mask: url(../../assets/linkedin.svg) no-repeat center / contain;
+}
+
+.footer-subscription {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 35%;
+  @media screen and (max-width: $breakpoints-small) {
+    width: 100%;
+    padding-bottom: 30%;
+  }
+  &__header {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  &__input {
+    height: 2.4rem;
+    border: 1px gray solid;
+    border-radius: 0.4rem;
+    width: 100%;
+    max-width: -moz-available;
+    margin-bottom: 1rem;
+    padding: 0 0.5rem;
+  }
+  &__email {
+    margin: 0;
+  }
+  &__submit {
+    width: 100%;
+    background-color: $black-soft;
+    color: $white;
+    border: 1px white solid;
+    border-radius: 0.4rem;
+    font-size: 1.2rem;
+    padding: 0.8rem;
+  }
+  &__submit-secondary {
+    @extend .footer-submit !optional;
+    background-color: $yellow-1;
+  }
+}

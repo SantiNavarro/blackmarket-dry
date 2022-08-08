@@ -1,0 +1,64 @@
+@import '../common/constants.scss';
+@import '../settings';
+@import '../common/mixins';
+
+.product-card {
+  height: fit-content;
+  box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.05);
+}
+.product-card-container {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  border-radius: 10px;
+  background-color: $white;
+  align-self: center;
+}
+
+.product-card-image {
+  width: 100%;
+  height: 260px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.product-card-details {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px $dark-grey-1 solid;
+  padding: 5%;
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+    height: auto;
+    width: 100%;
+  };
+  &__top {
+    display: flex;
+    justify-content: space-between;
+  };
+  &__favorite {
+    width: 1.5rem;
+  };
+}
+
+
+.product-card-details-status-new {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 5px;
+  gap: 10px;
+  width: 69px;
+  height: 21px;
+  background-color: $status-new;
+  border-radius: 4px;
+  color: $white;
+}
+
+.product-card-details-status-restored {
+  @extend .product-card-details-status-new;
+  background-color: $status-restored;
+}

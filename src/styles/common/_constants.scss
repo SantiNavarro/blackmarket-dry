@@ -8,14 +8,16 @@ $light-grey-4: #f5f5f5;
 $light-grey-5: #999;
 $light-grey-6: #eeecf1;
 
-$dark-grey-1: #E0E0E0;
+$dark-grey-1: #e0e0e0;
 $dark-grey-2: #636363;
 
 $dark-white: #ffffff0d;
 
 $black: #000;
+$black-soft: #00031a;
 $white: #fff;
-
+$status-restored: #559f21;
+$status-new: #2751b9;
 $input-background-color: transparent;
 $input-text-color: $light-grey-2;
 
@@ -25,13 +27,12 @@ $red-2: #f10;
 
 $yellow-1: #f1af03;
 
-$orange-1-background: rgba(241, 101, 0, .1);
+$orange-1-background: rgba(241, 101, 0, 0.1);
 
 $loading-indicator-color: #80979797;
 
-$organization-stucture-background-color: rgba(69, 65, 78, .08);
-$modal-background: rgba(0, 0, 0, .2);
-
+$organization-stucture-background-color: rgba(69, 65, 78, 0.08);
+$modal-background: rgba(0, 0, 0, 0.2);
 
 $clr-primary: $white;
 $clr-secondary: $yellow-1;
@@ -55,4 +56,3 @@ $light: 300;
 $normal: 400;
 $semi-bold: 500;
 $bold: 700;
-
