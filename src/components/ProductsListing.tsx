@@ -1,9 +1,12 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import { useEffect, useState } from 'react';
 import { useMutation } from 'react-query';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { getListOfProducts } from '../api/queries';
 import { selectUserData } from '../store/features/api/selectors';
 import { selectFirstFourProducts, selectProducts } from '../store/features/products/selectors';
@@ -21,6 +24,7 @@ const ProductsListing = () => {
   const userState = useAppSelector(selectUserData);
   const dispatch = useDispatch();
   const { mutateAsync, error } = useMutation('products', getListOfProducts);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -40,20 +44,9 @@ const ProductsListing = () => {
           <ProductCard product={product} key={`product-card-render-${product.id}}`} />
         ))}
       </div>
-      <p
-        // onKeyDown={setModalOpen(!modalOpen)}
-        // onClick={setModalOpen(!modalOpen)}
-        className="products-listing-see-all"
-      >
+      <p onClick={() => navigate('/products')} className="products-listing-see-all">
         See all
       </p>
-      {/* <Modal>
-        <div className="products-listing-container">
-          {allProducts?.map((product: Product) => (
-            <ProductCard product={product} key={`product-card-render-${product.id}}`} />
-          ))}
-        </div>
-      </Modal> */}
     </div>
   );
 };

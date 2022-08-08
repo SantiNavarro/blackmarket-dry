@@ -1,0 +1,45 @@
+@import '../common/constants.scss';
+@import '../settings';
+@import '../common/mixins';
+
+.all-products {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: $white;
+}
+
+.all-products-listing {
+  display: flex;
+  flex-direction: column;
+  width: inherit;
+  background-color: aliceblue;
+  padding: 5%;
+  align-items: center;
+  @media screen and (max-width: $breakpoints-small) {
+    padding: 0;
+  }
+}
+
+.all-products-load-more {
+  display: flex;
+  text-align: center;
+  font-size: 1.6rem;
+  border: 1px transparent solid;
+  width: fit-content;
+  padding: 0.8rem;
+  border-radius: 0.2rem;
+  color: $white;
+  background-color: $black;
+  cursor: pointer;
+  @media screen and (max-width: $breakpoints-small) {
+    padding: 0.6rem;
+    font-size: 1.5rem;
+  }
+}
+
+.all-products-load-more-secondary {
+  @extend .all-products-load-more;
+  background-color: $yellow-1;
+}

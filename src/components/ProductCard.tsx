@@ -14,7 +14,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <div className="product-card-image" style={{ backgroundImage: `url(${image})` }} />
         <div className="product-card-details">
           <div className="product-card-details__top">
-            <p>{price}</p>
+            <p>{`$${price}`}</p>
+
             <p
               className={classNames({
                 'product-card-details-status-new': status === 'New',

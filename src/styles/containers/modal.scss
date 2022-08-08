@@ -1,0 +1,17 @@
+@import '../common/constants.scss';
+@import '../settings';
+.modal {
+  display: flex;
+}
+
+.modal-close-btn {
+  background-color: $yellow-1;
+  color: $white;
+  border: 1px $white solid;
+  text-align: right;
+  width: fit-content;
+  right: 0;
+  position: absolute;
+  font-size: 1.5rem;
+  cursor: pointer;
+}

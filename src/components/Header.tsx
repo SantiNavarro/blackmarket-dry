@@ -1,7 +1,9 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useDispatch } from 'react-redux';
 import Switch from '@mui/material/Switch';
 import classNames from 'classnames/bind';
 import { BrowserView, MobileView } from 'react-device-detect';
+import { useNavigate } from 'react-router-dom';
 
 import SearchBar from './SearchBar';
 import NavigationSection from './NavigationSection';
@@ -14,7 +16,7 @@ import MobileMenu from './MobileMenu';
 const Header = () => {
   const dispatch = useDispatch();
   const themeState = useAppSelector(selectThemeStatus);
-
+  const navigate = useNavigate();
   const handleThemeChange = () => {
     dispatch(toggleTheme());
   };
@@ -33,13 +35,13 @@ const Header = () => {
             onChange={handleThemeChange}
             color="warning"
           />
-          <div className="img-logo" />
+          <div className="img-logo" onKeyDown={() => navigate('/')} onClick={() => navigate('/')} />
           <MobileMenu />
         </div>
         <SearchBar />
       </MobileView>
       <BrowserView className="header-browser-view">
-        <div className="img-logo" />
+        <div className="img-logo" onKeyDown={() => navigate('/')} onClick={() => navigate('/')} />
         <SearchBar />
         <NavigationSection />
         <Switch
