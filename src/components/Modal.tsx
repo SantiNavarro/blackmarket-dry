@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-props-no-spreading */
 import { ReactElement, forwardRef, Ref } from 'react';
 import Dialog from '@mui/material/Dialog';

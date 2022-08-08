@@ -1,9 +1,9 @@
 import '../styles/containers/paymentMethods.scss';
 
 interface PaymentMethodsProps {
-  firstImage: any;
-  secondImage?: any;
-  thirdImage?: any;
+  firstImage: string;
+  secondImage?: string;
+  thirdImage?: string;
 }
 const PaymentMethods = ({ firstImage, secondImage, thirdImage }: PaymentMethodsProps) => (
   <div className="payment-methods-container">

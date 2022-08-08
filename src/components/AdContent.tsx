@@ -1,9 +1,9 @@
 import '../styles/containers/adContent.scss';
 
 interface AdContentProps {
-  firstImage: any;
-  secondImage?: any;
-  thirdImage?: any;
+  firstImage: string;
+  secondImage?: string;
+  thirdImage?: string;
 }
 const AdContent = ({ firstImage, secondImage, thirdImage }: AdContentProps) => (
   <div className="ad-content">

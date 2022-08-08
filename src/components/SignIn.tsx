@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-wrap-multilines */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import Box from '@mui/material/Box';
 import { useMutation } from 'react-query';
@@ -39,9 +40,9 @@ const SignIn = () => {
   const navigate = useNavigate();
   const loginMutation = useMutation(() => signInRequest(values.email, values.password));
 
-  const onSubmitHandler = () => {
+  const onSubmitHandler = useCallback(() => {
     loginMutation.mutate();
-  };
+  }, [loginMutation]);
 
   useEffect(() => {
     const keyDownHandler = (event: any) => {
@@ -56,7 +57,7 @@ const SignIn = () => {
     return () => {
       document.removeEventListener('keydown', keyDownHandler);
     };
-  }, []);
+  }, [onSubmitHandler]);
 
   useEffect(() => {
     if (loginMutation.isSuccess) {

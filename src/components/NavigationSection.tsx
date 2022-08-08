@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
