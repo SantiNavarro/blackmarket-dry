@@ -27,6 +27,17 @@ const Header = () => {
         'header-theme-secondary': themeState,
       })}
     >
+      <BrowserView className="header-browser-view">
+        <div className="img-logo" onKeyDown={() => navigate('/')} onClick={() => navigate('/')} />
+        <SearchBar />
+        <NavigationSection />
+        <Switch
+          sx={{ 'background-color': themeState ? '#f1af03' : 'grey', margin: '1rem 0' }}
+          checked={themeState}
+          onChange={handleThemeChange}
+          color="warning"
+        />
+      </BrowserView>
       <MobileView className="header-mobile-view">
         <div className="header-mobile-view__children">
           <Switch
@@ -40,17 +51,6 @@ const Header = () => {
         </div>
         <SearchBar />
       </MobileView>
-      <BrowserView className="header-browser-view">
-        <div className="img-logo" onKeyDown={() => navigate('/')} onClick={() => navigate('/')} />
-        <SearchBar />
-        <NavigationSection />
-        <Switch
-          sx={{ 'background-color': themeState ? '#f1af03' : 'grey', margin: '1rem 0' }}
-          checked={themeState}
-          onChange={handleThemeChange}
-          color="warning"
-        />
-      </BrowserView>
     </div>
   );
 };
