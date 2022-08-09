@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/dot-notation */
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -56,6 +57,13 @@ const SignUp = () => {
       navigate('/');
     }
     if (loginMutation.isError) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const error = loginMutation.error as any;
+      const errorMessages = error?.response?.data?.errors['full_messages'];
+
+      if (errorMessages && typeof errorMessages[0] === 'string') {
+        setToastMessage(errorMessages[0]);
+      }
       setToastStatus(true);
     }
   }, [loginMutation, navigate, dispatch]);
