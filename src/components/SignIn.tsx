@@ -151,11 +151,12 @@ const SignIn = () => {
               }
               onSubmit={onSubmitHandler}
               onClick={onSubmitHandler}
-              disabled={!values.email || !values.password}
+              disabled={!!(values.email && values.password)}
             >
               Log in
             </button>
           )}
+
           <p className="paragraph-secondary">I forgot my password</p>
         </div>
       </BasicForm>
