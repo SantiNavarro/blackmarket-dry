@@ -37,17 +37,6 @@ const Products = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const response = await mutateAsync(userState);
-
-      if (!error) {
-        dispatch(storeProducts(response.data?.products));
-      }
-    };
-    fetchProducts();
-  }, [dispatch, mutateAsync, error, userState]);
-
   return (
     <Layout>
       <div className="all-products">

@@ -4,73 +4,42 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-import { useEffect, useState } from 'react';
-import { useMutation } from 'react-query';
-import { useDispatch } from 'react-redux';
-import classNames from 'classnames/bind';
-import { CircularProgress } from '@mui/material';
-import { Box } from '@mui/system';
-import { getListOfProducts } from '../api/queries';
-import { selectUserData } from '../store/features/api/selectors';
-import { selectFirstFourProducts, selectProducts } from '../store/features/products/selectors';
+
 import { useAppSelector } from '../store/hooks';
-import { Product, storeProducts, storeNextPageOfProducts } from '../store/slices/productsSlice';
+import { Product } from '../store/slices/productsSlice';
 import '../styles/containers/allProducts.scss';
 import Layout from '../components/Layout';
-import { selectThemeStatus } from '../store/features/theme/selectors';
 import ProductCardDetailed from '../components/ProductCardDetailed';
+import { selectCartProducts } from '../store/features/cart/selectors';
+import { selectFavoriteProducts } from '../store/features/favorites/selectors';
 
 const Products = () => {
-  const productsState = useAppSelector(selectFirstFourProducts);
-  const allProducts = useAppSelector(selectProducts);
-  const themeState = useAppSelector(selectThemeStatus);
-
-  const userState = useAppSelector(selectUserData);
-  const dispatch = useDispatch();
-  const { mutateAsync, error, isLoading } = useMutation('products', getListOfProducts);
-
-  const loadMoreProducts = async () => {
-    const response = await mutateAsync(userState);
-
-    if (!error) {
-      dispatch(storeNextPageOfProducts(response.data?.products));
-    }
-  };
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const response = await mutateAsync(userState);
-
-      if (!error) {
-        dispatch(storeProducts(response.data?.products));
-      }
-    };
-    fetchProducts();
-  }, [dispatch, mutateAsync, error, userState]);
+  const cartProducts = useAppSelector(selectCartProducts);
+  const favoriteProducts = useAppSelector(selectFavoriteProducts);
 
   return (
     <Layout>
       <div className="all-products">
+        <h2>Cart</h2>
         <div className="all-products-listing">
-          {allProducts?.map((product: Product) => (
-            <ProductCardDetailed product={product} key={`product-card-render-${product.id}}`} />
+          {cartProducts?.map((product: Product) => (
+            <ProductCardDetailed
+              showAddToCart={false}
+              product={product}
+              key={`product-card-render-${product.id}}`}
+            />
           ))}
         </div>
-        {isLoading ? (
-          <Box sx={{ display: 'flex', justifyContent: 'center', padding: '1.2rem' }}>
-            <CircularProgress />
-          </Box>
-        ) : (
-          <p
-            className={classNames({
-              'all-products-load-more': true,
-              'all-products-load-more-secondary': themeState,
-            })}
-            onClick={loadMoreProducts}
-          >
-            Load more
-          </p>
-        )}
+        <h2>Favorites</h2>
+        <div className="all-products-listing">
+          {favoriteProducts?.map((product: Product) => (
+            <ProductCardDetailed
+              showAddToCart={false}
+              product={product}
+              key={`product-card-render-${product.id}}`}
+            />
+          ))}
+        </div>
       </div>
     </Layout>
   );

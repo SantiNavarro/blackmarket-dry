@@ -17,6 +17,7 @@ export const enhanceProducts = (products: Product[]): Product[] =>
       product,
       {
         ...product,
+        id: Math.floor(Math.random() * 1000),
         image:
           'http://t1.gstatic.com/licensed-image?q=tbn:ANd9GcS335HKPWiR1ei7g-3BPdEWsJJvB3jXPqqBL7oEqI_AA7DHy3CgTgS7i7Wd_5DJ9T7X6uRT4bczwGj-RLWoFNA',
         status: 'Restored',

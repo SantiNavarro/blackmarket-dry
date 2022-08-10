@@ -1,35 +1,36 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import { useState } from 'react';
 import classNames from 'classnames/bind';
 import { useDispatch } from 'react-redux';
 import { Product } from '../store/slices/productsSlice';
 import '../styles/containers/productCard.scss';
-import UnfavoriteLogo from '../assets/favorite.svg';
-import FavoritedLogo from '../assets/favorite.png';
+import UnfavoritedLogo from '../assets/unfavorited.svg';
+import FavoritedLogo from '../assets/favorited.png';
 
 import { addProductToFavorites, removeProductFromFavorites } from '../store/slices/favoritesSlice';
+import { useAppSelector } from '../store/hooks';
+import { RootState } from '../store';
+import { selectFavoriteProductById } from '../store/features/favorites/selectors';
 
 type ProductCardProps = {
   product: Product;
 };
 const ProductCard = ({ product }: ProductCardProps) => {
-  const [favorited, setFavorited] = useState<boolean>(false);
   const dispatch = useDispatch();
-  const { name, price, image, status } = product;
-
+  const { name, price, image, status, id } = product;
+  const isFavorited = useAppSelector((state: RootState) => {
+    return selectFavoriteProductById(state, product.id);
+  });
   const handleFavoriting = () => {
-    if (favorited) {
+    if (isFavorited) {
       dispatch(removeProductFromFavorites(product));
-      setFavorited(false);
     } else {
       dispatch(addProductToFavorites(product));
-      setFavorited(true);
     }
   };
   return (
-    <div className="product-card">
+    <div className="product-card" key={`product-card-${id}`} id={`product-card-${id}`}>
       <div className="product-card-container">
         <div className="product-card-image" style={{ backgroundImage: `url(${image})` }} />
         <div className="product-card-details">
@@ -47,17 +48,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
           </div>
           <div className="product-card-details__bottom">
             <p>{name}</p>
-
-            <div
-              className="product-card-details__favorited"
+            <img
               onClick={handleFavoriting}
-              style={{
-                backgroundColor: favorited ? '#FFFFFF' : '#000000',
-                WebkitMask: `url(${favorited ? FavoritedLogo : UnfavoriteLogo}) no-repeat center`,
-                mask: `url(${favorited ? FavoritedLogo : UnfavoriteLogo}) no-repeat center`,
-              }}
+              style={{ width: '30px', height: '30px' }}
+              src={isFavorited ? FavoritedLogo : UnfavoritedLogo}
+              alt="favorite-icon"
             />
-            <img src={FavoritedLogo} alt="fav" />
           </div>
         </div>
       </div>

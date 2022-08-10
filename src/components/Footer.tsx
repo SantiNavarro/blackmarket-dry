@@ -23,7 +23,7 @@ const Footer = () => {
       <div className="footer-bottom-content">
         <div className="footer-nav-list">
           {footerKeys.map((key: string) => (
-            <NavList header={key} items={typedFooterElements[key]} />
+            <NavList key={`nav-list-${key}`} header={key} items={typedFooterElements[key]} />
           ))}
         </div>
         <div className="footer-bottom-content__socials">

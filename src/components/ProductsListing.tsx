@@ -34,7 +34,9 @@ const ProductsListing = () => {
         dispatch(storeProducts(response.data?.products));
       }
     };
-    fetchProducts();
+    if (allProducts.length < 1) {
+      fetchProducts();
+    }
   }, [dispatch, mutateAsync, error, userState]);
 
   return (
