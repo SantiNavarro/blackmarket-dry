@@ -1,15 +1,18 @@
 import classNames from 'classnames/bind';
+import { useDispatch } from 'react-redux';
 import { Product } from '../store/slices/productsSlice';
 import '../styles/containers/productCard.scss';
-import FavoriteLogo from '../assets/favorite.svg';
+// import FavoriteLogo from '../assets/favorite.svg';
 import { selectThemeStatus } from '../store/features/theme/selectors';
 import { useAppSelector } from '../store/hooks';
+import { addProductToCart } from '../store/slices/cartSlice';
 
 type ProductCardDetailedProps = {
   product: Product;
 };
 const ProductCardDetailed = ({ product }: ProductCardDetailedProps) => {
   const themeState = useAppSelector(selectThemeStatus);
+  const dispatch = useDispatch();
 
   const { name, price, image, status } = product;
   return (
@@ -30,8 +33,17 @@ const ProductCardDetailed = ({ product }: ProductCardDetailedProps) => {
         </div>
       </div>
       <div className="product-card-detailed-actions">
-        <img className="product-card-details__favorite" src={FavoriteLogo} alt="favorite-logo" />
+        {/* <div
+          className="product-card-details__favorite"
+          src={FavoriteLogo}
+          style={{
+            backgroundColor: favorited ? '#FFFFFF' : '#000000',
+            WebkitMask: `url(${FavoriteLogo}) no-repeat center`,
+            mask: `url(${FavoriteLogo}) no-repeat center`,
+          }}
+        /> */}
         <button
+          onClick={() => dispatch(addProductToCart(product))}
           className={classNames({
             'product-card-detailed-actions__add-to-cart': true,
             'product-card-detailed-actions__add-to-cart-secondary': themeState,

@@ -8,6 +8,8 @@ export const enhanceProducts = (products: Product[]): Product[] =>
   products
     .map((product: Product) => ({
       ...product,
+      // this is needed as part of the mock, given that we have only 2 items on our db, we need to make our items unique
+      id: Math.floor(Math.random() * 1000),
       status: 'New',
       image: 'https://www.collinsdictionary.com/images/full/chair_583020097_1000.jpg',
     }))

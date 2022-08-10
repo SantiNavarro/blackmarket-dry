@@ -38,8 +38,13 @@
     display: flex;
     justify-content: space-between;
   }
-  &__favorite {
+  &__favorited {
+    cursor: pointer;
     width: 1.5rem;
+  }
+  &__unfavorited {
+    @extend .product-card-details__favorited;
+    // background-color: $black;
   }
 }
 

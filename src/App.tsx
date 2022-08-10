@@ -8,12 +8,14 @@ import SignUpPage from './pages/SignUp';
 import './App.scss';
 import PrivateRoutes from './utils/PrivateRoutes';
 import ProductsPage from './pages/Products';
+import CartPage from './pages/Cart';
 
 const App = () => (
   <Routes>
     <Route element={<PrivateRoutes />}>
       <Route element={<HomePage />} path="/" />
       <Route element={<ProductsPage />} path="/products" />
+      <Route element={<CartPage />} path="/cart" />
     </Route>
     <Route element={<SignInPage />} path="/sign-in" />
     <Route element={<SignUpPage />} path="/sign-up" />
