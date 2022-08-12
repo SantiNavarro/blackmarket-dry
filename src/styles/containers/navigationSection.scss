@@ -4,9 +4,11 @@
 
 .select-container {
   display: flex;
+  cursor: pointer;
 }
 .select {
   @include color-scheme($white, $black);
+  cursor: pointer;
   display: flex;
   height: 3em;
   border-radius: 0.4em;
@@ -30,10 +32,8 @@
   align-items: center;
   border-width: thin;
   border-style: solid;
-
 }
 
 .shopping-button-secondary {
   @extend .select-secondary;
-  
 }

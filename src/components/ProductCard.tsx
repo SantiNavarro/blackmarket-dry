@@ -50,7 +50,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             <p>{name}</p>
             <img
               onClick={handleFavoriting}
-              style={{ width: '30px', height: '30px' }}
+              className="product-card-fav-icon"
               src={isFavorited ? FavoritedLogo : UnfavoritedLogo}
               alt="favorite-icon"
             />

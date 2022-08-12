@@ -23,6 +23,12 @@
   background-size: contain;
 }
 
+.product-card-fav-icon {
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
 .product-card-details {
   display: flex;
   flex-direction: column;
