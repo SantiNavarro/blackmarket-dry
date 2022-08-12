@@ -2,7 +2,6 @@
 import { useDispatch } from 'react-redux';
 import Switch from '@mui/material/Switch';
 import classNames from 'classnames/bind';
-// import { isMobile } from 'react-device-detect';
 import { useNavigate } from 'react-router-dom';
 
 import SearchBar from './SearchBar';
@@ -63,39 +62,6 @@ const Header = () => {
       )}
     </div>
   );
-  // return (
-  //   <div
-  //     className={classNames({
-  //       'header-container': true,
-  //       'header-theme-secondary': themeState,
-  //     })}
-  //   >
-  //     <BrowserView className="header-browser-view">
-  //       <div className="img-logo" onKeyDown={() => navigate('/')} onClick={() => navigate('/')} />
-  //       <SearchBar />
-  //       <NavigationSection />
-  //       <Switch
-  //         sx={{ backgroundColor: themeState ? '#f1af03' : 'grey', margin: '1rem 0' }}
-  //         checked={themeState}
-  //         onChange={handleThemeChange}
-  //         color="warning"
-  //       />
-  //     </BrowserView>
-  //     <MobileView className="header-mobile-view">
-  //       <div className="header-mobile-view__children">
-  //         <Switch
-  //           sx={{ backgroundColor: themeState ? '#f1af03' : 'grey', margin: '1rem 0' }}
-  //           checked={themeState}
-  //           onChange={handleThemeChange}
-  //           color="warning"
-  //         />
-  //         <div className="img-logo" onKeyDown={() => navigate('/')} onClick={() => navigate('/')} />
-  //         <MobileMenu />
-  //       </div>
-  //       <SearchBar />
-  //     </MobileView>
-  //   </div>
-  // );
 };
 
 export default Header;
