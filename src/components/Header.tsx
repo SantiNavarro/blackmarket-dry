@@ -32,7 +32,7 @@ const Header = () => {
         <SearchBar />
         <NavigationSection />
         <Switch
-          sx={{ 'background-color': themeState ? '#f1af03' : 'grey', margin: '1rem 0' }}
+          sx={{ backgroundColor: themeState ? '#f1af03' : 'grey', margin: '1rem 0' }}
           checked={themeState}
           onChange={handleThemeChange}
           color="warning"
@@ -41,7 +41,7 @@ const Header = () => {
       <MobileView className="header-mobile-view">
         <div className="header-mobile-view__children">
           <Switch
-            sx={{ 'background-color': themeState ? '#f1af03' : 'grey', margin: '1rem 0' }}
+            sx={{ backgroundColor: themeState ? '#f1af03' : 'grey', margin: '1rem 0' }}
             checked={themeState}
             onChange={handleThemeChange}
             color="warning"
