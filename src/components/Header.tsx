@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import Switch from '@mui/material/Switch';
 import classNames from 'classnames/bind';
 import { useNavigate } from 'react-router-dom';
+import { alpha, styled } from '@mui/material/styles';
+import { pink } from '@mui/material/colors';
 
 import SearchBar from './SearchBar';
 import NavigationSection from './NavigationSection';
@@ -12,6 +14,23 @@ import { useAppSelector } from '../store/hooks';
 import { selectThemeStatus } from '../store/features/theme/selectors';
 import MobileMenu from './MobileMenu';
 import { useIsSmallDevice } from '../hooks/useWindowSize';
+
+const CustomSwitch = styled(Switch)(({ theme }) => ({
+  '.MuiSwitch-track': {
+    backgroundColor: '#e8f5e9',
+  },
+  '& .MuiSwitch-switchBase.Mui-checked': {
+    color: '#f1af03',
+    backgroundColor: '#FFFFFF',
+
+    '&:hover': {
+      backgroundColor: alpha(pink[600], theme.palette.action.hoverOpacity),
+    },
+  },
+  '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
+    backgroundColor: '#FFFFFF',
+  },
+}));
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -32,12 +51,7 @@ const Header = () => {
       {isSmallDevice ? (
         <div className="header-mobile-view">
           <div className="header-mobile-view__children">
-            <Switch
-              sx={{ backgroundColor: themeState ? '#f1af03' : 'grey', margin: '1rem 0' }}
-              checked={themeState}
-              onChange={handleThemeChange}
-              color="warning"
-            />
+            <CustomSwitch checked={themeState} onChange={handleThemeChange} />
             <div
               className="img-logo"
               onKeyDown={() => navigate('/')}
@@ -52,12 +66,7 @@ const Header = () => {
           <div className="img-logo" onKeyDown={() => navigate('/')} onClick={() => navigate('/')} />
           <SearchBar />
           <NavigationSection />
-          <Switch
-            sx={{ backgroundColor: themeState ? '#f1af03' : 'grey', margin: '1rem 0' }}
-            checked={themeState}
-            onChange={handleThemeChange}
-            color="warning"
-          />
+          <CustomSwitch checked={themeState} onChange={handleThemeChange} />
         </div>
       )}
     </div>

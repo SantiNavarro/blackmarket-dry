@@ -9,6 +9,7 @@ import { useAppSelector } from '../store/hooks';
 import { selectThemeStatus } from '../store/features/theme/selectors';
 import { signOut } from '../store/slices/userSlice';
 import { pickRoute } from '../utils/businessLogic';
+import { clearCart } from '../store/slices/cartSlice';
 
 const NavigationDropDown = () => {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const NavigationDropDown = () => {
   const handleChange = (event: any) => {
     if (event.target.value === 'Log out') {
       dispatch(signOut());
+      dispatch(clearCart());
       navigate('/sign-in');
     } else {
       navigate(pickRoute(event.target.value));

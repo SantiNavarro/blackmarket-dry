@@ -17,10 +17,14 @@
 
 .product-card-image {
   width: 100%;
-  height: 260px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+  height: 240px;
+  @media screen and (max-width: $breakpoints-small) {
+    height: 170px;
+    background-position: center;
+  }
 }
 
 .product-card-fav-icon {
@@ -34,6 +38,9 @@
   flex-direction: column;
   border-top: 1px $dark-grey-1 solid;
   padding: 5%;
+  @media screen and (max-width: $breakpoints-small) {
+    border-top: none;
+  }
   &__bottom {
     display: flex;
     justify-content: space-between;
@@ -87,14 +94,27 @@
   flex-direction: row;
   width: 70%;
   justify-content: flex-start;
+  @media screen and (max-width: $breakpoints-small) {
+    flex-direction: column;
+    padding: 0 1rem;
+    width: 60%;
+  }
+}
+
+.product-card-detailed-container-listing {
+  @extend .product-card-detailed-container;
+  @media screen and (max-width: $breakpoints-small) {
+    flex-direction: row;
+    align-items: center;
+  }
 }
 
 .product-card-image-detailed {
   @extend .product-card-image;
-  width: 130px;
+  width: 200px;
   margin: 0 4rem;
   @media screen and (max-width: $breakpoints-small) {
-    width: 110px;
+    width: 100%;
     margin: 0;
   }
 }
@@ -131,4 +151,41 @@
   &__par {
     font-size: 1.5rem;
   }
+  @media screen and (max-width: $breakpoints-small) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.product-card-detailed-stats-listing {
+  @extend .product-card-detailed-stats;
+  @media screen and (max-width: $breakpoints-small) {
+    flex-direction: column;
+  }
+}
+
+.favorite-card-remove {
+  cursor: pointer;
+  color: blue;
+  @media screen and (max-width: $breakpoints-small) {
+    padding: 0 1rem;
+    width: 100%;
+  }
+}
+
+.favorite-card-detailed {
+  @extend .product-card-detailed;
+  border: 1px $black solid;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.product-card-details-mobile {
+  display: flex;
+}
+
+.favorite-card-header {
+  display: flex;
+  flex-direction: column;
 }

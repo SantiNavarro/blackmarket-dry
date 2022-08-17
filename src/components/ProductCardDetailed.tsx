@@ -46,10 +46,10 @@ const ProductCardDetailed = ({ product, showAddToCart = true }: ProductCardDetai
       key={`product-card-detailed-${id}`}
       id={`product-card-detailed-${id}`}
     >
-      <div className="product-card-detailed-container">
+      <div className="product-card-detailed-container-listing">
         <div className="product-card-image-detailed" style={{ backgroundImage: `url(${image})` }} />
-        <div className="product-card-detailed-stats">
-          <p className="product-card-detailed-stats__par">{name}</p>
+        <div className="product-card-detailed-stats-listing">
+          <p className="product-card-detailed-stats-listing__par">{name}</p>
           <p
             className={classNames({
               'product-card-details-status-new': status === 'New',
@@ -58,7 +58,7 @@ const ProductCardDetailed = ({ product, showAddToCart = true }: ProductCardDetai
           >
             {status}
           </p>
-          <p className="product-card-detailed-stats__par">{`$${price}`}</p>
+          <p className="product-card-detailed-stats-listing__par">{`$${price}`}</p>
         </div>
       </div>
       <div className="product-card-detailed-actions">

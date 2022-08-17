@@ -4,45 +4,80 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-
+import { useDispatch } from 'react-redux';
+import classNames from 'classnames/bind';
 import { useAppSelector } from '../store/hooks';
-import { Product } from '../store/slices/productsSlice';
 import '../styles/containers/allProducts.scss';
+import '../styles/containers/cart.scss';
 import Layout from '../components/Layout';
-import ProductCardDetailed from '../components/ProductCardDetailed';
-import { selectCartProducts } from '../store/features/cart/selectors';
+import { selectCartProducts, selectCartTotal } from '../store/features/cart/selectors';
 import { selectFavoriteProducts } from '../store/features/favorites/selectors';
+import FavoriteCard from '../components/FavoriteCard';
+import CartCard from '../components/CartCard';
+import { CartProduct, clearCart } from '../store/slices/cartSlice';
+import { Product } from '../store/slices/productsSlice';
+import { selectThemeStatus } from '../store/features/theme/selectors';
 
-const Products = () => {
+const Cart = () => {
   const cartProducts = useAppSelector(selectCartProducts);
   const favoriteProducts = useAppSelector(selectFavoriteProducts);
+  const cartTotal = useAppSelector(selectCartTotal);
+  const themeState = useAppSelector(selectThemeStatus);
+  const dispatch = useDispatch();
 
   return (
     <Layout>
       <div className="all-products">
-        <h2>Cart</h2>
-        <div className="all-products-listing">
-          {cartProducts?.map((product: Product) => (
-            <ProductCardDetailed
-              showAddToCart={false}
-              product={product}
-              key={`product-card-render-${product.id}}`}
-            />
-          ))}
+        <div className="cart-section">
+          {cartProducts.length > 0 ? (
+            <div className="cart-header">
+              <h2>My shopping cart</h2>
+              <button
+                className={classNames({
+                  'cart-total__button': true,
+                  'cart-total__button-secondary': themeState,
+                })}
+                type="button"
+                onClick={() => dispatch(clearCart())}
+              >
+                Clear cart
+              </button>
+            </div>
+          ) : (
+            <h2>My shopping cart</h2>
+          )}
+
+          <div className="cart-listing">
+            {cartProducts?.map((product: CartProduct) => (
+              <CartCard product={product} key={`cart-card-render-${product.id}}`} />
+            ))}
+          </div>
+          <div className="cart-total">
+            <h2>TOTAL</h2>
+            <div />
+            <h2>{`$${cartTotal}`}</h2>
+            <button
+              className={classNames({
+                'cart-total__button': true,
+                'cart-total__button-secondary': themeState,
+              })}
+              type="button"
+            >
+              Go to checkout
+            </button>
+          </div>
         </div>
-        <h2>Favorites</h2>
-        <div className="all-products-listing">
-          {favoriteProducts?.map((product: Product) => (
-            <ProductCardDetailed
-              showAddToCart={false}
-              product={product}
-              key={`product-card-render-${product.id}}`}
-            />
-          ))}
+        <div className="cart-section">
+          <h2>My favourites</h2>
+          <div className="cart-listing">
+            {favoriteProducts?.map((product: Product) => (
+              <FavoriteCard product={product} key={`favorite-card-render-${product.id}}`} />
+            ))}
+          </div>
         </div>
       </div>
     </Layout>
   );
 };
 
-export default Products;
+export default Cart;
