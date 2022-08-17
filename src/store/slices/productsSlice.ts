@@ -3,8 +3,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
+export interface CartProduct extends Product {
+  amount: number;
+}
+
 // mocking of images
-export const enhanceProducts = (products: Product[]): Product[] =>
+export const enhanceProducts = (products: Product[]) =>
   products
     .map((product: Product) => ({
       ...product,

@@ -1,13 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unused-vars */
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
-import { useMutation } from 'react-query';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { useCallback, useEffect, useState } from 'react';
-import { searchProducts } from '../api/queries';
-import { selectUserData } from '../store/features/api/selectors';
-import { useAppSelector } from '../store/hooks';
+import { storeSearchText } from '../store/slices/searchSlice';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -51,13 +51,18 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const SearchBar = () => {
   const [searchText, setSearchText] = useState('');
-  const userState = useAppSelector(selectUserData);
-
-  const searchMutation = useMutation(() => searchProducts(userState, searchText));
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = useCallback(() => {
-    searchMutation.mutate();
-  }, [searchMutation]);
+    dispatch(storeSearchText(searchText));
+
+    navigate('/search', {
+      state: {
+        search: searchText,
+      },
+    });
+  }, [searchText, navigate, dispatch]);
 
   const handleChange = (event: any) => {
     setSearchText(event.target.value);
@@ -77,9 +82,10 @@ const SearchBar = () => {
       document.removeEventListener('keydown', keyDownHandler);
     };
   }, [handleSubmit]);
+
   return (
     <Search>
-      <SearchIconWrapper id="santi" onClick={handleSubmit}>
+      <SearchIconWrapper onClick={handleSubmit}>
         <SearchIcon />
       </SearchIconWrapper>
       <StyledInputBase

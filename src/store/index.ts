@@ -8,6 +8,7 @@ import themeReducer from './slices/themeSlice';
 import productsReducer from './slices/productsSlice';
 import favoritesReducer from './slices/favoritesSlice';
 import cartReducer from './slices/cartSlice';
+import searchReducer from './slices/searchSlice';
 
 const persistConfig = {
   key: 'root',
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   products: productsReducer,
   favorites: favoritesReducer,
   cart: cartReducer,
+  search: searchReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

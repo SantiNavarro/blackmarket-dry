@@ -6,6 +6,7 @@ const baseHeaders = {
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json',
+    'Token-Type': 'Bearer',
   },
   data: {},
 };
@@ -54,25 +55,14 @@ export const getListOfProducts = async (userCredentials: UserCredentials, page =
 
 export const searchProducts = async (userCredentials: UserCredentials, text: string) => {
   const { uid, client, accessToken } = userCredentials;
-
   const headers = {
     ...baseHeaders.headers,
     client,
     uid,
     'access-token': accessToken,
   };
-  const params = {
-    headers,
-    data: {
-      text,
-    },
-    text,
-    body: {
-      text,
-    },
-  };
 
-  const response = await axios.get(`${baseUrl}/search_products`, params);
+  const response = await axios.post(`${baseUrl}/search_products`, { text }, { headers });
 
   return response;
 };
