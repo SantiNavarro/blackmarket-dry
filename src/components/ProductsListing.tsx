@@ -13,11 +13,9 @@ import { selectFirstFourProducts, selectProducts } from '../store/features/produ
 import { useAppSelector } from '../store/hooks';
 import { Product, storeProducts } from '../store/slices/productsSlice';
 import '../styles/containers/productsListing.scss';
-import Modal from './Modal';
 import ProductCard from './ProductCard';
 
 const ProductsListing = () => {
-  const [modalOpen, setModalOpen] = useState(false);
   const productsState = useAppSelector(selectFirstFourProducts);
   const allProducts = useAppSelector(selectProducts);
 
@@ -34,8 +32,10 @@ const ProductsListing = () => {
         dispatch(storeProducts(response.data?.products));
       }
     };
-    fetchProducts();
-  }, [dispatch, mutateAsync, error, userState]);
+    if (allProducts.length < 1) {
+      fetchProducts();
+    }
+  }, [dispatch, mutateAsync, error, userState, allProducts]);
 
   return (
     <div className="products-listing">

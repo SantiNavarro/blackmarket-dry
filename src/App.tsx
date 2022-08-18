@@ -8,12 +8,16 @@ import SignUpPage from './pages/SignUp';
 import './App.scss';
 import PrivateRoutes from './utils/PrivateRoutes';
 import ProductsPage from './pages/Products';
+import CartPage from './pages/Cart';
+import SearchPage from './pages/Search';
 
 const App = () => (
   <Routes>
     <Route element={<PrivateRoutes />}>
       <Route element={<HomePage />} path="/" />
       <Route element={<ProductsPage />} path="/products" />
+      <Route element={<CartPage />} path="/cart" />
+      <Route element={<SearchPage />} path="/search" />
     </Route>
     <Route element={<SignInPage />} path="/sign-in" />
     <Route element={<SignUpPage />} path="/sign-up" />

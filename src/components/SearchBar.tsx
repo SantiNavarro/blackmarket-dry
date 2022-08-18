@@ -1,6 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-unused-vars */
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useCallback, useEffect, useState } from 'react';
+import { storeSearchText } from '../store/slices/searchSlice';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -22,10 +29,11 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
   height: '100%',
   position: 'absolute',
-  pointerEvents: 'none',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  cursor: 'pointer',
+  zIndex: 2,
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -42,12 +50,49 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const SearchBar = () => {
+  const [searchText, setSearchText] = useState('');
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleSubmit = useCallback(() => {
+    dispatch(storeSearchText(searchText));
+
+    navigate('/search', {
+      state: {
+        search: searchText,
+      },
+    });
+  }, [searchText, navigate, dispatch]);
+
+  const handleChange = (event: any) => {
+    setSearchText(event.target.value);
+  };
+
+  useEffect(() => {
+    const keyDownHandler = (event: any) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        handleSubmit();
+      }
+    };
+
+    document.addEventListener('keydown', keyDownHandler);
+
+    return () => {
+      document.removeEventListener('keydown', keyDownHandler);
+    };
+  }, [handleSubmit]);
+
   return (
     <Search>
-      <SearchIconWrapper>
+      <SearchIconWrapper onClick={handleSubmit}>
         <SearchIcon />
       </SearchIconWrapper>
-      <StyledInputBase placeholder="Search for products" inputProps={{ 'aria-label': 'search' }} />
+      <StyledInputBase
+        onChange={event => handleChange(event)}
+        placeholder="Search for products"
+        inputProps={{ 'aria-label': 'search' }}
+      />
     </Search>
   );
 };

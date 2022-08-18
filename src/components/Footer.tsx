@@ -1,4 +1,6 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import classNames from 'classnames/bind';
+import { useNavigate } from 'react-router-dom';
 import footerElements from '../utils/footerElements.json';
 import NavList from './NavList';
 import '../styles/containers/footer.scss';
@@ -10,9 +12,9 @@ type FooterElements = {
 };
 const Footer = () => {
   const themeState = useAppSelector(selectThemeStatus);
+  const navigate = useNavigate();
   const footerKeys = Object.keys(footerElements);
   const typedFooterElements: FooterElements = footerElements;
-
   return (
     <div
       className={classNames({
@@ -23,11 +25,15 @@ const Footer = () => {
       <div className="footer-bottom-content">
         <div className="footer-nav-list">
           {footerKeys.map((key: string) => (
-            <NavList header={key} items={typedFooterElements[key]} />
+            <NavList key={`nav-list-${key}`} header={key} items={typedFooterElements[key]} />
           ))}
         </div>
         <div className="footer-bottom-content__socials">
-          <div className="footer-bm-logo" />
+          <div
+            className="footer-bm-logo"
+            onClick={() => navigate('/')}
+            onKeyDown={() => navigate('/')}
+          />
           <div className="footer-socials">
             <div className="footer-socials-instagram" />
             <div className="footer-socials-facebook" />

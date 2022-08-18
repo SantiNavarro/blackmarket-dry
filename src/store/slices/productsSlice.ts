@@ -3,20 +3,28 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
+export interface CartProduct extends Product {
+  amount: number;
+}
+
 // mocking of images
-export const enhanceProducts = (products: Product[]): Product[] =>
+export const enhanceProducts = (products: Product[]) =>
   products
     .map((product: Product) => ({
       ...product,
+      // this is needed as part of the mock, given that we have only 2 items on our db, we need to make our items unique
+      id: Math.floor(Math.random() * 1000),
       status: 'New',
-      image: 'https://www.collinsdictionary.com/images/full/chair_583020097_1000.jpg',
+      image:
+        'https://assets.adidas.com/images/w_280,h_280,f_auto,q_auto:sensitive/4652cf1c21b547e6b5bcae3f012bcd7e_9366/ucl-pro-void-ball.jpg',
     }))
     .flatMap((product: Product) => [
       product,
       {
         ...product,
+        id: Math.floor(Math.random() * 1000),
         image:
-          'http://t1.gstatic.com/licensed-image?q=tbn:ANd9GcS335HKPWiR1ei7g-3BPdEWsJJvB3jXPqqBL7oEqI_AA7DHy3CgTgS7i7Wd_5DJ9T7X6uRT4bczwGj-RLWoFNA',
+          'https://i0.wp.com/imgs.hipertextual.com/wp-content/uploads/2022/06/MacBook-Pro-M2-4.jpg?fit=1200%2C800&quality=50&strip=all&ssl=1',
         status: 'Restored',
       },
     ]);

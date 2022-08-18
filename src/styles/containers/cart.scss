@@ -1,0 +1,88 @@
+@import '../common/constants.scss';
+@import '../settings';
+@import '../common/mixins';
+
+.cart-section {
+  display: flex;
+  flex-direction: column;
+  margin: 4rem 0;
+  width: 70%;
+  background-color: $white;
+  padding: 2% 4%;
+  h2 {
+    margin: 0;
+    font-weight: 300;
+    cursor: pointer;
+  }
+  @media screen and (max-width: $breakpoints-small) {
+    width: 100%;
+    h2 {
+      padding: 0.5rem;
+    }
+  }
+}
+
+.cart-listing {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: $white;
+  align-items: center;
+  @media screen and (max-width: $breakpoints-small) {
+    padding: 1rem;
+    width: 90%;
+  }
+}
+
+.cart-card-count {
+  display: flex;
+
+  button {
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    margin: 0 0.9rem;
+  }
+}
+
+.cart-header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.cart-total {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  font-weight: bold;
+  align-items: center;
+  padding-top: 1rem;
+  div {
+    position: relative;
+    border-bottom: 1px $black solid;
+    width: 70%;
+    padding-top: 0.8rem;
+    @media screen and (max-width: $breakpoints-small) {
+      width: 20%;
+    }
+  }
+  &__button {
+    cursor: pointer;
+    color: $white;
+    background-color: $black;
+    border: 1px $white solid;
+    padding: 0.8rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 10px;
+    @media screen and (max-width: $breakpoints-small) {
+      padding: 0.7rem;
+      font-size: 0.7rem;
+    }
+  }
+  &__button-secondary {
+    @extend .cart-total__button;
+    background-color: $yellow-1;
+  }
+}

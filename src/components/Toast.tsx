@@ -11,6 +11,7 @@ const Toast = ({ open = false, message }: ToastProps) => {
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={open}
       message={message}
+      autoHideDuration={1500}
       key="topright"
     />
   );

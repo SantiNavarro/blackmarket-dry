@@ -14,6 +14,7 @@ import { signOut } from '../store/slices/userSlice';
 import { selectThemeStatus } from '../store/features/theme/selectors';
 import { useAppSelector } from '../store/hooks';
 import '../styles/containers/mobileMenu.scss';
+import { clearCart } from '../store/slices/cartSlice';
 
 const MobileMenu = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -28,6 +29,7 @@ const MobileMenu = () => {
   const handleClose = (event: any) => {
     if (event.target.value === 'Log out') {
       dispatch(signOut());
+      dispatch(clearCart());
       navigate('/sign-in');
     } else {
       navigate(pickRoute(event.target.value));
