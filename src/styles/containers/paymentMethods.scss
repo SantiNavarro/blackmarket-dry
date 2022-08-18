@@ -1,0 +1,51 @@
+@import '../common/constants.scss';
+@import '../settings';
+
+.payment-methods-container {
+  display: flex;
+  flex-direction: column;
+  margin: 9rem 0 2rem 0;
+  h1 {
+    text-align: center;
+    font-weight: 400;
+    font-size: 2.6rem;
+  }
+}
+.payment-methods-border {
+  border-right: 1px solid $black-soft;
+  position: absolute;
+  top: 35%;
+  bottom: 35%;
+  left: 100%;
+}
+.payment-methods {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  width: 100%;
+  &__images {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 5rem;
+    height: 5rem;
+  }
+  &__logo {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 8rem;
+
+    &:last-of-type {
+      border: none;
+      padding: 3rem 0 3rem 8rem;
+      @media screen and (max-width: $breakpoints-small) {
+        padding: 3rem 8rem;
+      }
+    }
+  }
+  @media screen and (max-width: $breakpoints-small) {
+    flex-direction: column;
+  }
+}

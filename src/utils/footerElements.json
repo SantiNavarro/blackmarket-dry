@@ -1,0 +1,58 @@
+{
+  "Restored furniture": [
+    {
+      "label": "Entries",
+      "path": "/entries"
+    },
+    {
+      "label": "Rates",
+      "path": "/rates"
+    },
+    {
+      "label": "Categories",
+      "path": "/categories"
+    },
+    {
+      "label": "Sale",
+      "path": "/sale"
+    }
+  ],
+  "Stay connected": [
+    {
+      "label": "Instagram",
+      "path": "/bmarket"
+    },
+    {
+      "label": "Tik Tok",
+      "path": "/bmarket"
+    },
+    {
+      "label": "Facebook",
+      "path": "/facebook"
+    }
+  ],
+  "Black Market": [
+    {
+      "label": "Our history",
+      "path": "/history"
+    },
+    {
+      "label": "Staff",
+      "path": "/staff"
+    },
+    {
+      "label": "Work with us",
+      "path": "/work-with-us"
+    }
+  ],
+  "Support": [
+    {
+      "label": "Chat",
+      "path": "/chat"
+    },
+    {
+      "label": "Address",
+      "path": "/address"
+    }
+  ]
+}

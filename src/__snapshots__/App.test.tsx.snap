@@ -10,10 +10,9 @@ exports[`My app renders correctly 1`] = `
     <div
       className="basic-form"
     >
-      <img
-        alt="basic-form__logo"
+      <div
         className="basic-form__logo"
-        src="blackMarketLogo.png"
+        role="img"
       />
       <div
         className="form-control-container"
@@ -146,7 +145,7 @@ exports[`My app renders correctly 1`] = `
           disabled={true}
           onClick={[Function]}
           onSubmit={[Function]}
-          type="button"
+          type="submit"
         >
           Log in
         </button>

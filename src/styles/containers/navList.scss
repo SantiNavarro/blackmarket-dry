@@ -1,0 +1,35 @@
+@import '../common/constants.scss';
+@import '../settings';
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  padding-right: 3rem;
+  color: $white;
+  font-size: 14px;
+  list-style-type: none;
+  font-family: 'DM Sans';
+  font-style: normal;
+  padding-left: 0;
+  @media screen and (max-width: $breakpoints-small) {
+    padding-right: 0;
+
+    }
+  &:last-of-type {
+    padding-right: 0;
+  }
+  &__header {
+    font-weight: bold;
+    padding: 0.3rem;
+  }
+  &__items {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 133.4%;
+    cursor: pointer;
+    padding: 0.3rem;
+  }
+}

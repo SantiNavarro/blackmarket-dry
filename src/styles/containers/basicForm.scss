@@ -21,6 +21,9 @@
     height: 25px;
     margin: 20px;
     top: 0;
+    background-color: black; /* defines the background color of the image */
+    mask: url(../../assets/blackMarketLogo.svg) no-repeat center / contain;
+    -webkit-mask: url(../../assets/blackMarketLogo.svg) no-repeat center / contain;
   }
 }
 

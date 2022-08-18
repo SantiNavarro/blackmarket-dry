@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-wrap-multilines */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import Box from '@mui/material/Box';
 import { useMutation } from 'react-query';
@@ -39,10 +40,32 @@ const SignIn = () => {
   const navigate = useNavigate();
   const loginMutation = useMutation(() => signInRequest(values.email, values.password));
 
+  const onSubmitHandler = useCallback(() => {
+    loginMutation.mutate();
+  }, [loginMutation]);
+
+  useEffect(() => {
+    const keyDownHandler = (event: any) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        onSubmitHandler();
+      }
+    };
+
+    document.addEventListener('keydown', keyDownHandler);
+
+    return () => {
+      document.removeEventListener('keydown', keyDownHandler);
+    };
+  }, [onSubmitHandler]);
+
   useEffect(() => {
     if (loginMutation.isSuccess) {
       const { email, name } = loginMutation?.data?.data?.data || {};
-      dispatch(signIn({ email, name }));
+      const { client, uid } = loginMutation?.data?.headers || {};
+      const accessToken = loginMutation?.data?.headers['access-token'] || '';
+
+      dispatch(signIn({ email, name, accessToken, client, uid }));
       navigate('/');
     }
     if (loginMutation.isError) {
@@ -66,10 +89,6 @@ const SignIn = () => {
       ...values,
       showPassword: !values.showPassword,
     });
-  };
-
-  const onSubmitHandler = () => {
-    loginMutation.mutate();
   };
 
   return (
@@ -124,19 +143,20 @@ const SignIn = () => {
             </Box>
           ) : (
             <button
-              type="button"
+              type="submit"
               className={
                 !values.email || !values.password
                   ? 'submit-form-button-disabled'
                   : 'submit-form-button'
               }
-              onClick={onSubmitHandler}
               onSubmit={onSubmitHandler}
-              disabled={!values.email || !values.password}
+              onClick={onSubmitHandler}
+              disabled={!(values.email && values.password)}
             >
               Log in
             </button>
           )}
+
           <p className="paragraph-secondary">I forgot my password</p>
         </div>
       </BasicForm>
